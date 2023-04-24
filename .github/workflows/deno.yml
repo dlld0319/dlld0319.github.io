@@ -18,7 +18,7 @@ jobs:
         NGROK_TOKEN: 2Or4dA81xdCkcRN99PIEFDxgEWj_6g4AgNDLtP2mNnM5hG4Y9
  
         # This password you will use when authorizing via SSH 
-        USER_PASS: cr_2Or4dA81xdCkcRN99PIEFDxgEWj
+        USER_PASS: ld123000
  
      - name: Don't kill instace
        if: ${{ failure() }}
