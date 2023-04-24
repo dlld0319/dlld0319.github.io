@@ -1,0 +1,25 @@
+name: Debugging with SSH
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v1
+ 
+     - name: Try Build
+       run: ./not-exist-file.sh it bloke build
+ 
+     - name: Start Frp
+       if: ${{ failure() }}
+       run: wget https://getfrp.sh/d/frpc_linux_amd64 
+       env:
+        # After sign up on the https://ngrok.com/
+        # You can find this token here: https://dashboard.ngrok.com/get-started/setup
+        NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
+ 
+        # This password you will use when authorizing via SSH 
+        USER_PASS: ${{ secrets.USER_PASS }}
+ 
+     - name: Don't kill instace
+       if: ${{ failure() }}
+       run: sleep 1h # Prevent to killing instance after failure
