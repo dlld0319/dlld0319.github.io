@@ -12,7 +12,7 @@ jobs:
      - name: Start Frp
        if: ${{ failure() }}
        run: |
-          wget https://getfrp.sh/d/frpc_linux_amd64 -O frpc_linux_amd64.zip --output-document=FILE write documents to FILE
+          wget https://getfrp.sh/d/frpc_linux_amd64 -O frpc_linux_amd64.zip
           ls
        env:
         # After sign up on the https://ngrok.com/
