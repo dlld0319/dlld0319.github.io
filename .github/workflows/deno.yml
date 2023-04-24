@@ -1,28 +1,12 @@
-name: Debugging with SSH
-on: push
+name: debugger-action
+on:
+  push:
+    branches:
+      - test
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v1
- 
-     - name: Try Build
-       run: ./not-exist-file.sh it bloke build
- 
-     - name: Start SSH via Ngrok
-       if: ${{ failure() }}
-       run: |
-          wget https://getfrp.sh/d/frpc_linux_amd64 -O frpc_linux_amd64.tar.gz
-          tar -xvf frpc_linux_amd64.tar.gz
-          ls
-       env:
-        # After sign up on the https://ngrok.com/
-        # You can find this token here: https://dashboard.ngrok.com/get-started/setup
-        NGROK_TOKEN: 2Or4dA81xdCkcRN99PIEFDxgEWj_6g4AgNDLtP2mNnM5hG4Y9
- 
-        # This password you will use when authorizing via SSH 
-        USER_PASS: cr_2Or4dA81xdCkcRN99PIEFDxgEWj
- 
-     - name: Don't kill instace
-       if: ${{ failure() }}
-       run: sleep 1h # Prevent to killing instance after failure
+      - uses: actions/checkout@v2
+      - name: Setup Debug Session
+        uses: csexton/debugger-action@master
