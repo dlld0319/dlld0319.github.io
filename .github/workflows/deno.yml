@@ -29,10 +29,7 @@ jobs:
           yarn install
           yarn deploy
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          ACCESS_TOKEN: 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
-          REPOSITORY_NAME: ld122481669/ld122481669.github.io
-          BRANCH: main
-          FOLDER: public
+          folder: public # The folder the action should deploy.
