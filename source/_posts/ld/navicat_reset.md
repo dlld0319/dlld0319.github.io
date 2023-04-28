@@ -4,6 +4,7 @@ categories:
 - 小技巧
 tags:
 - code
+excerpt: bat 文件即可
 ---
 
 
