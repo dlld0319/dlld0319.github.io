@@ -33,7 +33,8 @@ jobs:
           yarn deploy
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.4.0
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          BRANCH: pages
+          ssh-key: ${{ secrets.DEVSERCET2 }}
+          BRANCH: main
           FOLDER: public
