@@ -457,7 +457,7 @@ post_widget:
 stick_top:
   # Position of icon
   # Optional values: left | right
-  position: right
+  position: left
   # Icon name in FontAwesome, see: https://fontawesome.com/icons
   icon: fas fa-thumbtack
   # Rotation Angle of icon.
