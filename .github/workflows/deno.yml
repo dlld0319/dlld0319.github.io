@@ -1,9 +1,9 @@
 name: deploy
 
 on:
-  
-  workflow_dispatch
-
+  push:
+    branches:
+      - build
 jobs:
   deploy:
     name: Deploy
