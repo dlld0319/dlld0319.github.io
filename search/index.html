@@ -350,6 +350,15 @@ header .header__right .dropdown-menus .dropdown-menu {
     
 
     
+        <!--
+        <link rel="stylesheet" href="/css/page.css" media="print"
+            onload="this.media='all';this.onload=null">
+        <noscript>-->
+            <link rel="stylesheet" href="/css/page.css">
+        <!--</noscript>-->
+    
+    
+        <link rel="stylesheet" href="/css/search.css">
     
     <link rel="stylesheet" href="/css/main.css" media="print" onload="this.media='all';this.onload=null">
     <noscript>
@@ -446,206 +455,221 @@ header .header__right .dropdown-menus .dropdown-menu {
         <div id="page-main" class="main-content">
         <div class="mg-top">
             
-  <div id="index-banner" class="text-center middle-center">
-    <div class="banner-text">
-        <h3 id="banner-name">
-            六六的小站
-        </h3>
-        <p class="slogan">
-          小日记
-        </p>
+<article class="page">
+  <div id="post-meta-m" style="padding-bottom:0;">
+      <div class="post-meta" id="post-meta">
+        <h3>Search</h3>
+      </div>
     </div>
-</div>
-
-
-<div class="post-card-center">
-<div class="post-card-main">
-
-    
-      <div class="index-card">
-        
-        <article class="index-card-info">
-          <h3 class="index-header">
-            <a href="/2023/04/28/lc/diary/day-2023-03-24/">
-            
-            日记伊始</a>
-          </h3>
-          <p class="index-excerpt">
-              
-              
-                
-              
-              2023年不知时候的一个1月的时间 ，你悄悄来到了我和栋的身边，也许是一种思念，也许足一种期盼，你的到来让我和爸爸以及姥姥 姥爷 爷奶 奶奶很是开心你来到我身边之后，我领看你进行了大规模的“军事演练” 因为妈妈还不知道，你来到了我的身边让我们一起回忆 这些精彩瞬间
-
-          </p>
-          <div class="index-btm post-metas">
-            
-              
-                <time datetime="2023-04-28 03:43" pubdate>
-                  2023-04-28
-                </time>
-              
-            
-            
-              
-                
-                  <span class="p-dot"></span><a href="/categories/%E5%A6%88%E5%A6%88%E6%97%A5%E8%AE%B0/">妈妈日记</a>
-                
-              
-            
-          </div>
-        </article>
+      <div>
+        <div id="search-card" style="padding-top:1.5rem;padding-bottom: 1.5rem;">
+          <form class="search-form" autocomplete="off">
+              <div class="search-input">
+                  <input maxlength="80" type="search" class="search-input" id="search-input" name="s" placeholder="keyword" required>
+              </div>
+              <div class="search-button">
+                  <button class="search-button" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+                  </button>
+              </div>
+          </form>
       </div>
-    
-  
-    
-      <div class="index-card">
-        
-        <article class="index-card-info">
-          <h3 class="index-header">
-            <a href="/2023/04/28/ld/html_to_markdown/">
-            
-            通过html编辑 将html转化为markdown</a>
-          </h3>
-          <p class="index-excerpt">
-              
-              
-                
-              
-              HTML TO MARKDOWNhtml编辑器
-我们在html里编辑然后把它转化成markdown
+      <div id="search-result"></div>
+      <script>
+      var searchDataFile = "/search.json";
+        function searchEscape(keyword) {
+    const htmlEntityMap = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+        '/': '&#x2F;',
+    };
 
-          </p>
-          <div class="index-btm post-metas">
-            
-              
-                <time datetime="2023-04-28 03:43" pubdate>
-                  2023-04-28
-                </time>
-              
-            
-            
-              
-                
-                  <span class="p-dot"></span><a href="/categories/%E5%B0%8F%E6%8A%80%E5%B7%A7/">小技巧</a>
-                
-              
-            
-          </div>
-        </article>
-      </div>
-    
-  
-    
-      <div class="index-card">
-        
-        <article class="index-card-info">
-          <h3 class="index-header">
-            <a href="/2023/04/28/ld/nice_tool_volta/">
-            
-            Node 版本管理工具</a>
-          </h3>
-          <p class="index-excerpt">
-              
-              
-                
-              
-              Volta
+    return keyword.replace(/[&<>"'/]/g, function (i) {
+        return htmlEntityMap[i];
+    });
+}
 
-          </p>
-          <div class="index-btm post-metas">
-            
-              
-                <time datetime="2023-04-28 03:43" pubdate>
-                  2023-04-28
-                </time>
-              
-            
-            
-              
-                
-                  <span class="p-dot"></span><a href="/categories/%E5%B0%8F%E6%8A%80%E5%B7%A7/">小技巧</a>
-                
-              
-            
-          </div>
-        </article>
-      </div>
-    
-  
-    
-      <div class="index-card">
-        
-        <article class="index-card-info">
-          <h3 class="index-header">
-            <a href="/2023/04/28/ld/navicat_reset/">
-            
-            Navicat Premium 15\16 重置试用时间</a>
-          </h3>
-          <p class="index-excerpt">
-              
-              
-                
-              
-              
-创建一个bat 文件即可
+function regEscape(keyword) {
+    const regEntityMap = {
+        '{': '\\{',
+        '}': '\\}',
+        '[': '\\[',
+        ']': '\\]',
+        '(': '\\(',
+        ')': '\\)',
+        '?': '\\?',
+        '*': '\\*',
+        '.': '\\.',
+        '+': '\\+',
+        '^': '\\^',
+        $: '\\$',
+    };
 
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849503@echo offecho\echo\echo 适用于 Navicat V15 V16echo 正在清除试用信息。。。for /f %%i in (&#x27;reg query HKC
-          </p>
-          <div class="index-btm post-metas">
-            
-              
-                <time datetime="2023-04-28 03:43" pubdate>
-                  2023-04-28
-                </time>
-              
-            
-            
-              
-                
-                  <span class="p-dot"></span><a href="/categories/%E5%B0%8F%E6%8A%80%E5%B7%A7/">小技巧</a>
-                
-              
-            
-          </div>
-        </article>
-      </div>
-    
-  
-    
-      <div class="index-card">
-        
-        <article class="index-card-info">
-          <h3 class="index-header">
-            <a href="/2023/03/24/hello-world/">
-            
-            Hello World</a>
-          </h3>
-          <p class="index-excerpt">
-              
-              
-                
-              
-              Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
-          </p>
-          <div class="index-btm post-metas">
-            
-              
-                <time datetime="2023-03-24 01:04" pubdate>
-                  2023-03-24
-                </time>
-              
-            
-            
-          </div>
-        </article>
-      </div>
-    
-  
-</div>
-</div>
+    return keyword.replace(/[\{\}\[\]\(\)\?\*\.\+\^\$]/g, function (i) {
+        return regEntityMap[i];
+    });
+}
 
+function getParam(reqParam) {
+    reqParam = reqParam.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const paraReg = new RegExp('[\\?&]' + reqParam + '=([^&#]*)');
+    const results = paraReg.exec(window.location);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+function clearPosts() {
+    const resultSectionElement = document.getElementById('search-result');
+    resultSectionElement.innerHTML = "<h5 class='text-center'>无搜索结果</h5>";
+}
+
+function createPosts(resArr) {
+    const resultSectionElement = document.getElementById('search-result');
+    let resultString = '';
+
+    resArr.forEach((resInfo) => {
+        resultString += '';
+
+        const pageInfo = resInfo[0];
+        const postTemplate = `
+        <div>
+        <a href="${pageInfo.link}" class="search-result__link">
+            <div class='search-result__item'>
+                <strong class="search-result__title">
+                    ${pageInfo.title}
+                </strong>
+                <div class="search-result__content">
+                    ${pageInfo.content}
+                </div>
+            </div>
+        </a>
+        </div>
+        `;
+
+        resultString += postTemplate;
+    });
+
+    resultSectionElement.innerHTML = resultString;
+}
+
+function loadDataSearch(searchDataFile, skeys) {
+    fetch(searchDataFile)
+        .then((res) => {
+            return res.json();
+        })
+        .then((datas) => {
+            let resultArray = [];
+            let resultCount = 0;
+            let keywords = skeys.trim().toLowerCase().split(/\s/);
+
+            datas.forEach((data) => {
+                if (typeof data.title === 'undefined' || typeof data.content === 'undefined') {
+                    return;
+                }
+
+                let matched = false;
+
+                const dataTitle = data.title.trim().toLowerCase();
+                const dataContent = data.content
+                    ? data.content
+                          .trim()
+                          .replace(/<[^>]+>/g, '')
+                          .toLowerCase()
+                    : '';
+                let dataWeight = 0;
+
+                let indexs = {};
+                indexs.title = -1;
+                indexs.content = -1;
+                indexs.firstOccur = -1;
+                indexs.lastOccur = -1;
+
+                if (dataTitle) {
+                    keywords.forEach((keyword) => {
+                        indexs.title = dataTitle.indexOf(keyword);
+                        indexs.content = dataContent.indexOf(keyword);
+                        if (indexs.title !== -1 || indexs.content !== -1) {
+                            matched = true;
+                            if (indexs.content !== -1) {
+                                if (indexs.firstOccur > indexs.content || indexs.firstOccur === -1) {
+                                    indexs.firstOccur = indexs.content;
+                                }
+                                if (indexs.lastOccur < indexs.content) {
+                                    indexs.lastOccur = indexs.content;
+                                }
+                            }
+                            dataWeight += indexs.title !== -1 ? 2 : 0;
+                            dataWeight += indexs.content !== -1 ? 1 : 0;
+                            resultCount++;
+                        }
+                    });
+                }
+
+                if (matched) {
+                    let tPage = {};
+                    tPage.title = data.title;
+                    tPage.link = data.url;
+                    keywords.forEach((keyword) => {
+                        const regS = new RegExp(regEscape(keyword) + '(?!>)', 'gi');
+                        tPage.title = tPage.title.replace(regS, '<m>$&</m>');
+                    });
+                    if (indexs.firstOccur >= 0) {
+                        const halfLenth = 100;
+                        let start = indexs.firstOccur - halfLenth;
+                        let end = indexs.lastOccur + halfLenth;
+                        if (start < 0) {
+                            start = 0;
+                        }
+                        if (start === 0) {
+                            end = halfLenth * 2;
+                        }
+                        if (end > dataContent.length) {
+                            end = dataContent.length;
+                        }
+                        tPage.content = dataContent.substr(start, end - start);
+                        keywords.forEach((keyword) => {
+                            const regS = new RegExp(regEscape(keyword) + '(?!>)', 'gi');
+                            tPage.content = tPage.content.replace(regS, '<m>$&</m>');
+                        });
+                    }
+                    resultArray.push([tPage, dataWeight]);
+                }
+            });
+            if (resultCount !== 0) {
+                resultArray.sort((a, b) => {
+                    return b[1] - a[1];
+                });
+                createPosts(resultArray);
+            } else {
+                clearPosts();
+            }
+        });
+}
+
+function keySearch(skeys) {
+    loadDataSearch(searchDataFile, searchEscape(skeys));
+}
+
+function inpSearch() {
+    const skeys = document.getElementById('search-input').value;
+    window.history.pushState({}, 0, window.location.href.split('?')[0] + '?s=' + skeys.replace(/\s/g, '+'));
+    keySearch(skeys);
+    return false;
+}
+
+(() => {
+    const skeys = getParam('s');
+    if (skeys !== '') {
+        document.getElementById("search-result").innerHTML = "<h5 class='text-center'>搜索中...</h5>"
+        document.getElementById('search-input').value = skeys;
+        keySearch(skeys);
+    }
+})();
+
+      </script>
+</article>
         </div>
         
 <footer class="text-center">
