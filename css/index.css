@@ -2197,7 +2197,7 @@ kbd {
   height: 1rem;
   line-height: 1rem;
   text-align: center;
-  right: 0;
+  left: 0;
 }
 .sticky-top__icon {
   display: block;
