@@ -33,6 +33,6 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          ACCESS_TOKEN: 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
+          ACCESS_TOKEN: ${{DEVSERCET}}
           BRANCH: main
           FOLDER: public
