@@ -60,8 +60,8 @@ menu:
 # Secondary menu
 submenu:
   # Add item of secondary menu in here.
-  # xxx1:
-  #   xxx1-1: /xxx1-1/ || fa(s|r|l|d|b) fa-xxx
+  categories:
+     mamaday: /bbb/ || fas fa-female
   #   xxx1-2: /xxx1-2/ || fa(s|r|l|d|b) fa-xxx
 
 menu_settings:
@@ -103,7 +103,7 @@ night_mode:
     bg_color: '#8c8a8a'
   # The icon that stand for day and night.
   icon:
-    dark: 🌜
+    dark: 🌙
     light: 🌞
 
 # The layout for sidebar and content of site.
