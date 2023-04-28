@@ -146,11 +146,11 @@ header:
   # Banner area.
   banner:
     # Effective for all pages.
-    enable: true
+    enable: false
     # You can override it by `header_title` in Front-Matter of .md
-    title: Hello Stun
+    title: Helo
     # You can override it by `header_subtitle` in Front-Matter of .md
-    subtitle: An elegant theme for Hexo
+    subtitle: welcome
   # Mask effect of the background image.
   mask:
     enable: false
