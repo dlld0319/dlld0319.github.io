@@ -35,6 +35,6 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          ssh-key: ${{ secrets.DEVSERCET2 }}
-          BRANCH: main
-          FOLDER: public
+          token: ${{ secrets.DEVSERCET2 }}
+          branch: main
+          folder: public
