@@ -245,7 +245,7 @@ footer:
 
 # Creative Commons 4.0 International License
 creative_commons:
-  enable: true
+  enable: false
   # Optional values: BY | BY-SA | BY-ND | BY-NC | BY-NC-SA | BY-NC-ND
   # For details, please see: https://creativecommons.org/share-your-work/licensing-types-examples/
   license: BY-NC-SA
@@ -258,7 +258,7 @@ creative_commons:
   #   it | lv | lt | hu | nl | no | pt | pt_BR | pl | ro | sl | fi | sv
   #   tr | is | cs | el | be | ru | zh | zh_TW | uk | ar | fa | bn | ja | ko
   # If not set, `en` will be used by default.
-  language: zh-CN
+  language: zh-cn
 
 # Back to top
 back2top:
@@ -488,7 +488,7 @@ gitalk:
   # Gitalk's display language depends on user's browser or system environment.
   # If you want everyone visiting your site to see a uniform language, you can set a force language value.
   # Optional values: en | zh-CN | es-ES | fr | ru | zh-TW
-  language:
+  language: zh-cn
 
 # Waline
 # See: https://waline.js.org/
@@ -534,7 +534,7 @@ valine:
   # Whether to record the commenter IP.
   recordIP: false
   # Optional values: en | zh-cn
-  language:
+  language: zh-cn
 
 # MiniValine
 # See: https://github.com/MiniValine/MiniValine#Options
