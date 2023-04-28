@@ -11,7 +11,8 @@ excerpt: bat 文件即可
 - 创建一个bat 文件即可
 
 ```
-3
+
+
 @echo off
 
 echo\
@@ -33,6 +34,7 @@ reg delete HKCU\Software\PremiumSoft\NavicatPremium /f 1>nul 2>nul
 reg add HKCU\Software\PremiumSoft\NavicatPremium /v "AlreadyShowNavicatV16WelcomeScreen" /t REG_DWORD  /d 1 /f
 reg add HKCU\Software\PremiumSoft\NavicatPremium /v "AutoCheckUpdate" /t REG_DWORD /d 1 /f
 reg add HKCU\Software\PremiumSoft\NavicatPremium /v "AlreadyScanDeprecatedReport" /t REG_DWORD /d 1 /f
+reg add HKCU\Software\PremiumSoft\NavicatPremium\Update /v "LastCheckTime" /t REG_SZ /d 1 /f
 
 rmdir /S /Q C:\Users\XXXX\Documents\Navicat
 rmdir /S /Q C:\Users\XXXX\AppData\Local\Temp\NavicatCloud
@@ -61,6 +63,8 @@ echo deleteing %1
 reg delete %1 /f 1>nul 2>nul
 
 goto:eof
+
+
 ```
 
 
