@@ -301,9 +301,9 @@ author:
     opacity: 1
     # Mouse hover animation
     # Optional values: turn | shake
-    animation: turn
+    animation: false
   # Your favorite motto.
-  motto: Hello Stun
+  motto: 溜溜球
 
 # Social links
 # Value before `||` is the target link, value after `||` is the name of FontAwesome icon.
