@@ -1162,42 +1162,6 @@ kbd {
   -ms-animation: avatar-turn 0.8s both ease-out;
   animation: avatar-turn 0.8s both ease-out;
 }
-@-moz-keyframes avatar-turn {
-  100% {
-    -webkit-transform: rotate(1turn);
-    -moz-transform: rotate(1turn);
-    -o-transform: rotate(1turn);
-    -ms-transform: rotate(1turn);
-    transform: rotate(1turn);
-  }
-}
-@-webkit-keyframes avatar-turn {
-  100% {
-    -webkit-transform: rotate(1turn);
-    -moz-transform: rotate(1turn);
-    -o-transform: rotate(1turn);
-    -ms-transform: rotate(1turn);
-    transform: rotate(1turn);
-  }
-}
-@-o-keyframes avatar-turn {
-  100% {
-    -webkit-transform: rotate(1turn);
-    -moz-transform: rotate(1turn);
-    -o-transform: rotate(1turn);
-    -ms-transform: rotate(1turn);
-    transform: rotate(1turn);
-  }
-}
-@keyframes avatar-turn {
-  100% {
-    -webkit-transform: rotate(1turn);
-    -moz-transform: rotate(1turn);
-    -o-transform: rotate(1turn);
-    -ms-transform: rotate(1turn);
-    transform: rotate(1turn);
-  }
-}
 .sidebar-ov-author__text {
   margin: 0.5rem 0 0;
   font-weight: 600;
