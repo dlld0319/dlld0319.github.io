@@ -27,8 +27,6 @@ jobs:
 
       - name: npm install, build
         run: |
-          # Build and test the project, then
-          # deploy to Azure Web App.
           yarn install
           yarn deploy
 
