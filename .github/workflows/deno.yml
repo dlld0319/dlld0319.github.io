@@ -3,7 +3,7 @@ name: deploy
 on:
   push:
     branches:
-      - main
+      - build
 
 jobs:
   deploy:
@@ -33,7 +33,6 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          ACCESS_TOKEN: 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
-          REPOSITORY_NAME: ld122481669/ld122481669.github.io
+          ACCESS_TOKEN: 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
           BRANCH: main
           FOLDER: public
