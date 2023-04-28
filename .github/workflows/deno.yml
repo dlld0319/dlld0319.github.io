@@ -33,7 +33,7 @@ jobs:
           yarn deploy
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
-          BRANCH: main
+          BRANCH: pages
           FOLDER: public
