@@ -25,7 +25,7 @@ global:
 
     # 导航栏左侧的标题，为空则按 hexo config 中 `title` 显示
     # The title on the left side of the navigation bar. If empty, it is based on `title` in hexo config
-    nav_title: "六六的小站"
+    nav_title: "云深不吃醋的小站"
 
     # 浏览器标签页中的标题分隔符，效果： 文章名 - 站点名
     # Title separator in browser tab, eg: article - site
@@ -81,7 +81,7 @@ global:
         # 结束年份
         # End year.
         to_year: 2023
-        name: "六六的小站"
+        name: "云深不吃醋的小站"
 
     # 哀悼模式，网页黑白
     # Mourning mode, web page black and white
@@ -154,7 +154,7 @@ custom:
 index:
     # 名称
     # Name
-    name: "六六的小站"
+    name: "云深不吃醋的小站"
     # Slogan
     slogan: 小日记
 
