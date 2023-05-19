@@ -11,7 +11,7 @@ excerpt: bat 文件即可
 
 - 创建一个bat 文件即可
 
-```
+```bat
 
 
 @echo off
