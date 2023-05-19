@@ -1,5 +1,6 @@
 ---
 title: SwitchHosts小工具
+date: 2023-04-20
 categories:
 - 小技巧
 excerpt: SwitchHosts

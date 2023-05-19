@@ -1,5 +1,6 @@
 ---
 title: Navicat Premium 15\16 重置试用时间
+date: 2023-04-21
 categories:
 - 小技巧
 tags:

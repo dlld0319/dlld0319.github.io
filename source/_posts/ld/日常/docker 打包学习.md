@@ -1,12 +1,12 @@
 ---
 title: Docker打包学习
-date: 2023-03-24
+date: 2023-05-19
 categories:
 - docker
 excerpt: docker
 ---
 **打包docker基本脚本**
--首先需要选择基础镜像。一般选择这个 是体积最小的。
+- 首先需要选择基础镜像。一般选择这个 是体积最小的。
 如果使用特殊技术就选择对应技术使用的也可以，
 ```
 FROM alpine:latest
@@ -14,7 +14,7 @@ FROM alpine:latest
 FROM node:14-alpine3.15
 ```
 
--如果有需要可以设置时区，这个是独立项目需要的，比如我这只在本地跑一点代码
+- 如果有需要可以设置时区，这个是独立项目需要的，比如我这只在本地跑一点代码
 
 ```
 # 设置时区
@@ -33,7 +33,7 @@ RUN pip3 install requests
 RUN pip3 install schedule
 ```
 
--最后运行当前启动指令
+- 最后运行当前启动指令
 
 ```
 CMD [ "python", "jobs.py" ]
