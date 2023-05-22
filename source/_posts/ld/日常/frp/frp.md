@@ -47,7 +47,7 @@ locations = / # eg：http://xxx.xxx.xxx.xxx/yolo/test
 
 客户端启动
 ```shell
-frpc -c frps.ini
+frpc -c frpc.ini
 ```
 
 
