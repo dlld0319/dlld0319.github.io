@@ -45,6 +45,11 @@ custom_domains = xxx.xxx.xxx.xxx # 服务器ip
 locations = / # eg：http://xxx.xxx.xxx.xxx/yolo/test
 ```
 
+客户端启动
+```shell
+frpc -c frps.ini
+```
+
 
 linux可以持久后台运行
 ```
