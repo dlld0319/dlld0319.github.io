@@ -634,11 +634,11 @@ busuanzi:
 
 # Google analytics ID
 # See: https://analytics.google.com/
-google_analytics:
+google_analytics: https://analytics.google.com/
 
 # Baidu analytics ID
 # See: https://tongji.baidu.com/
-baidu_analytics:
+baidu_analytics: https://tongji.baidu.com/
 
 # ---------------------------------------------------------------
 # Search config
@@ -665,7 +665,7 @@ local_search:
 # ! This feature can only be enabled if either `algolia_search` or `local_search` is enabled.
 # ! -----------------------------------------------------------------------------------------
 assist_search:
-  enable: false
+  enable: true
   # Show the Google Search button. Use `www.google.com` to search for what you type.
   google: true
   # Show the Bing Search button. Use `www.bing.com` to search for what you type.
