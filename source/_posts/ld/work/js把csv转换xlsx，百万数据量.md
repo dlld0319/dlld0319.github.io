@@ -49,6 +49,7 @@ new Promise(async (resolve, reject) => {
             }
         })
         .on("end", function () {
+            formatToExcel(ids,rows[0],rows);
             console.log("已全部读取");
             resolve('finished')
         })
@@ -68,5 +69,6 @@ new Promise(async (resolve, reject) => {
 ).catch(o=>{
     console.log(o);
 })
+
 
 ```
