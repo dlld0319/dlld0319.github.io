@@ -62,7 +62,7 @@ new Promise(async (resolve, reject) => {
     var buffer=xlsx.build(excelArr);
     console.log('正在输出excel，请稍后...\n 数据量越大时间越长');
     fs.writeFile(outputUrl,buffer,function(err){
-        console.log('转换完成，'+err?'导出时可能出现问题，':''+'请检查导出文件核对数据');
+      console.log('转换完成，'+(err?'导出时可能出现问题，':'')+'请检查导出文件核对数据');
     })
 }
 ).catch(o=>{
