@@ -4,6 +4,7 @@
   "host":"http://localhost:3003/"
 },
   "login":{
-  "bg":"https://dlld0319.github.io/heart.png"
+  "bg":"https://dlld0319.github.io/heart.png",
+  "admin":[{"pn":17615017903,"pw":"123456"},{"pn":15524045095,"pw":"123456"}]
   }
 }
