@@ -2,5 +2,8 @@
 "name":"hello",
 "network":{
   "host":"http://localhost:3003/"
-}
+},
+  "login":{
+  "bg":"https://dlld0319.github.io/heart.png"
+  }
 }
