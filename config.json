@@ -1,3 +1,6 @@
 {
-"name":"hello"
+"name":"hello",
+"network":{
+  "host":"http://localhost:3003/"
+}
 }
