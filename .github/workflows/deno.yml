@@ -28,6 +28,7 @@ jobs:
       - name: npm install, build
         run: |
           npm i
+          npm run build
           cp -r dist/build/h5/ bk
 # cp CNAME public/
 
