@@ -47,6 +47,13 @@ const updateCategoryName = async function(id, name) {
 	return await http.post('deleteCategory',body);
 }
 
+const saveArticles=async function(content,title,categoryids){
+	const body={
+		content, title,categoryids
+	}
+	return await http.post('saveArticles',body);
+}
+
 export {
 	login,
 	createUser,
@@ -54,5 +61,6 @@ export {
 	allCategories,
 	createCategory,
 	deleteCategory,
-	updateCategoryName
+	updateCategoryName,
+	saveArticles,
 }

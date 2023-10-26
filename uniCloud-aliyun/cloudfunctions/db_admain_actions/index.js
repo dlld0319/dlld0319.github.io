@@ -140,6 +140,26 @@ const updateCategoryName = async function(event, context) {
 }
 
 
+const saveArticles=async function(event, context){
+	var body = bodyToJson(event.body);
+	var {
+		content,title,categoryids
+	}=body;
+	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
+		event,
+		context
+	});
+	const db = dbJQL;
+	return db.collection("db_articles").add({
+		content: content,
+		title,
+		categoryids,
+		isdeleted: 'false',
+		createdtime: +new Date()
+	})
+}
+
+
 exports.main = async (event, context) => {
 	var type = event.queryStringParameters.type;
 	var result = null;
@@ -167,6 +187,9 @@ exports.main = async (event, context) => {
 			break;
 		case 'updateCategoryName':
 			result = await updateCategoryName(event, context);
+			break;
+		case 'saveArticles':
+			result=await saveArticles(event,context);
 			break;
 	}
 	return result;
