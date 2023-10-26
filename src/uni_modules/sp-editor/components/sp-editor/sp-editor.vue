@@ -155,7 +155,7 @@
 
 			<!-- <view class="iconfont icon-yinyong" @tap="insertTemplate"></view> -->
 
-			<view class="iconfont icon-charutupian" @tap="insertImage"></view>
+			<!-- <view class="iconfont icon-charutupian" @tap="insertImage"></view> -->
 			<view class="iconfont icon-undo" @tap="undo"></view>
 			<view class="iconfont icon-redo" @tap="redo"></view>
 			<view class="iconfont icon-shanchu" @tap="clear"></view>
