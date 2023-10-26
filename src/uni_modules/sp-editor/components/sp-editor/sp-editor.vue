@@ -320,55 +320,55 @@ export default {
 				text: formatDate
 			})
 		},
-		insertImage() {
-			// #ifdef APP-PLUS || H5
-			uni.chooseImage({
-				// count: 1, // 默认9
-				success: (res) => {
-					const { tempFiles } = res
-					/**
-					 * 使用uniCloud.uploadFile进行云存储时，需要开启$emit('upinImage')事件，
-					 * 再注释掉insertImage，否则在富文本中插入的图片都是本地路径。
-					 * 一般可能需要在传给父组件的upinImage事件中，先遍历tempFiles，
-					 * 再用uploadFile拿到云存储的图片路径，
-					 * 最后将该路径insertImage到src属性中。
-					 * 这一过程等于是将下方注释掉的this.editorCtx.insertImage方法移到父组件中，
-					 * 由使用者在父组件中使用子传父的upinImage方法中的editorCtx参数，手动调用editorCtx.insertImage操作
-					 */
-					this.$emit('upinImage', tempFiles, this.editorCtx)
-					/* this.editorCtx.insertImage({
-						src: tempFiles[0].path,
-						width: '80%',
-						success: function () {}
-					}) */
-				},
-				fail() {
-					uni.showToast({
-						title: '未授权访问相册权限，请授权后使用',
-						icon: 'none'
-					})
-				}
-			})
-			// #endif
+		// insertImage() {
+		// 	// #ifdef APP-PLUS || H5
+		// 	uni.chooseImage({
+		// 		// count: 1, // 默认9
+		// 		success: (res) => {
+		// 			const { tempFiles } = res
+		// 			/**
+		// 			 * 使用uniCloud.uploadFile进行云存储时，需要开启$emit('upinImage')事件，
+		// 			 * 再注释掉insertImage，否则在富文本中插入的图片都是本地路径。
+		// 			 * 一般可能需要在传给父组件的upinImage事件中，先遍历tempFiles，
+		// 			 * 再用uploadFile拿到云存储的图片路径，
+		// 			 * 最后将该路径insertImage到src属性中。
+		// 			 * 这一过程等于是将下方注释掉的this.editorCtx.insertImage方法移到父组件中，
+		// 			 * 由使用者在父组件中使用子传父的upinImage方法中的editorCtx参数，手动调用editorCtx.insertImage操作
+		// 			 */
+		// 			this.$emit('upinImage', tempFiles, this.editorCtx)
+		// 			/* this.editorCtx.insertImage({
+		// 				src: tempFiles[0].path,
+		// 				width: '80%',
+		// 				success: function () {}
+		// 			}) */
+		// 		},
+		// 		fail() {
+		// 			uni.showToast({
+		// 				title: '未授权访问相册权限，请授权后使用',
+		// 				icon: 'none'
+		// 			})
+		// 		}
+		// 	})
+		// 	// #endif
 
-			// #ifdef MP-WEIXIN
-			// 微信小程序从基础库 2.21.0 开始， wx.chooseImage 停止维护，请使用 uni.chooseMedia 代替。
-			uni.chooseMedia({
-				// count: 1, // 默认9
-				success: (res) => {
-					// 同上chooseImage处理
-					const { tempFiles } = res
-					this.$emit('upinImage', tempFiles, this.editorCtx)
-				},
-				fail() {
-					uni.showToast({
-						title: '未授权访问相册权限，请授权后使用',
-						icon: 'none'
-					})
-				}
-			})
-			// #endif
-		},
+		// 	// #ifdef MP-WEIXIN
+		// 	// 微信小程序从基础库 2.21.0 开始， wx.chooseImage 停止维护，请使用 uni.chooseMedia 代替。
+		// 	uni.chooseMedia({
+		// 		// count: 1, // 默认9
+		// 		success: (res) => {
+		// 			// 同上chooseImage处理
+		// 			const { tempFiles } = res
+		// 			this.$emit('upinImage', tempFiles, this.editorCtx)
+		// 		},
+		// 		fail() {
+		// 			uni.showToast({
+		// 				title: '未授权访问相册权限，请授权后使用',
+		// 				icon: 'none'
+		// 			})
+		// 		}
+		// 	})
+		// 	// #endif
+		// },
 		onEditorInput(e) {
 			let maxlength = parseInt(this.maxlength)
 
