@@ -28,6 +28,7 @@ jobs:
       - name: npm install, build
         run: |
           npm i
+		  cp dist/build/h5/ dist
 # cp CNAME public/
 
       - name: Deploy
@@ -35,4 +36,4 @@ jobs:
         with:
           token: ${{ secrets.DEVSERCET2 }}
           branch: pages
-          folder: dist/build/h5/
+          folder: dist
