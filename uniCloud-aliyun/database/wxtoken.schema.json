@@ -1,0 +1,21 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"token": {
+			"description": "微信获取的TOKEN，过期时间为7200s"
+		},
+		"createdTime": {
+			"description": "创建时间"
+		}
+	}
+}

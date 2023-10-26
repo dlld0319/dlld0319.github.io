@@ -1,0 +1,97 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		}
+	    ,{
+            "path" : "pages/admin/index/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "管理员首页",
+                "enablePullDownRefresh": false
+            }
+            
+        },{
+		    "path" : "pages/admin/editor/editor",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "创建一篇文章",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		},{
+		    "path" : "pages/admin/articles/articles",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "文章列表",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+        ,{
+            "path" : "pages/admin/categorys/categorys",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "分类",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/admin/tags/tags",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "标签",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/admin/comments/comments",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "评论",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/admin/daily/daily",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "说说",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/admin/login/login",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/admin/register/register",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "custom"
+	},
+	"uniIdRouter": {}
+}

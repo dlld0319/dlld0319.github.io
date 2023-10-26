@@ -16,7 +16,7 @@ jobs:
       contents: read
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [14.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -27,13 +27,12 @@ jobs:
 
       - name: npm install, build
         run: |
-          yarn install
-          yarn deploy
-          cp CNAME public/
+          npm i
+# cp CNAME public/
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.DEVSERCET2 }}
           branch: pages
-          folder: public
+          folder: dist/build/h5

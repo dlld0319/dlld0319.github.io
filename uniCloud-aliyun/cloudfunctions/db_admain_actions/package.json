@@ -1,0 +1,7 @@
+{
+  "name": "db_admain_actions",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

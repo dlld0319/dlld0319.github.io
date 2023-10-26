@@ -1,0 +1,31 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"questionmainid": {
+			"description": "问题主表id"
+		},
+		"questionid": {
+			"description": "回答问题id"
+		},
+		"answerid": {
+			"description": "选择的答案"
+		},
+		"openid": {
+			"description": "用户id"
+		},
+		"createdtime": {
+			"description": "创建时间"
+		}
+	}
+}
