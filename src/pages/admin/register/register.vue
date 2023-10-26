@@ -46,8 +46,8 @@
 				}else if(this.filter.pwd!=this.filter.currectpwd){
 					return;
 				}
-				const isFirst= await _.isFirstUser();
-				const result= await _.createUser(this.filter.username,this.filter.pwd,isFirst?.length==0);
+				const isFirst= (await _.isFirstUser()).data;
+				const result= (await _.createUser(this.filter.username,this.filter.pwd,isFirst?.length==0)).data;
 				if(result?.length){
 					uni.redirectTo({
 						url:'/pages/admin/login/login'

@@ -75,7 +75,7 @@
 			},
 			async getCategorys() {
 				const self = this;
-				const allcategories = await _.allCategories();
+				const allcategories =( await _.allCategories()).data;
 				console.log(allcategories.data);
 				let array = [];
 				allcategories.data.map(b => {

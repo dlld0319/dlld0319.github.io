@@ -92,7 +92,7 @@
 			},
 			async getList() {
 				this.loading = true;
-				const allList = await _.allCategories(this.pageCurrent, this.pageSize);
+				const allList = (await _.allCategories(this.pageCurrent, this.pageSize)).data;
 				console.log(allList);
 				this.total = allList.count;
 				this.tableData = allList.data;
