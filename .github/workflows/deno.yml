@@ -35,4 +35,4 @@ jobs:
         with:
           token: ${{ secrets.DEVSERCET2 }}
           branch: pages
-          folder: dist/build/h5
+          folder: dist/build/h5/
