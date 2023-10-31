@@ -256,7 +256,9 @@ const alldailies = async function(event, context) {
 
 const createDaily = async function(event, context) {
 	var body = bodyToJson(event.body);
-	var content = body.content;
+	var {
+		content
+	}=body;
 	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
 		event,
 		context

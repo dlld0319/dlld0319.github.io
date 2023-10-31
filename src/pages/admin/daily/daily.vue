@@ -3,7 +3,7 @@
 		<admin-layout>
 			<view class="containt">
 				<view class="create" @tap="create()">
-					+新建分类
+					+添加说说
 				</view>
 				<view class="sent">
 					<view>
@@ -17,7 +17,7 @@
 								<uni-tr v-for="(item, index) in tableData" :key="index">
 									<uni-td>{{ item.createdtime }}</uni-td>
 									<uni-td>
-										<view class="name">{{ item.name }}</view>
+										<view class="name">{{ item.content }}</view>
 									</uni-td>
 									<uni-td>
 										<view class="uni-group">
@@ -42,7 +42,7 @@
 			<view class="edit-pannel">
 				<view class="tags">
 					<label for="">类型名称：</label>
-					<uni-easyinput type="text" placeholder="请输入类型名称" v-model="categoryName" />
+					<uni-easyinput type="textarea" placeholder="请输入类型名称" v-model="categoryName" />
 				</view>
 				<view class="buttons">
 					<view class="save" @tap="save()">
@@ -93,7 +93,7 @@
 			},
 			async getList() {
 				this.loading = true;
-				const allList = (await _.allCategories(this.pageCurrent, this.pageSize));
+				const allList = (await _.alldailies(this.pageCurrent, this.pageSize));
 				console.log(allList);
 				this.total = allList.count;
 				this.tableData = allList.data;
@@ -112,21 +112,72 @@
 			},
 			async save() {
 				if (this.updateId) {
-					await _.updateCategoryName(this.updateId, this.categoryName)
+					await _.updateDaily(this.updateId, this.categoryName)
 				} else {
-					await _.createCategory(this.categoryName);
+					await _.createDaily(this.categoryName);
 				}
 				this.$refs.popup.close();
 				await this.getList();
 			},
 			async deleteData(id) {
-				await _.deleteCategory(id);
+				await _.deleteDaily(id);
 				await this.getList();
 			}
 		}
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.containt {
+		padding-top: 100rpx;
 
+		.create {
+			padding: 10rpx 20rpx;
+			display: inline-block;
+			background-color: #F7F7F7;
+			cursor: pointer;
+		}
+
+		.sent {
+			margin-top: 20rpx;
+
+			.uni-pagination-box {
+				margin-top: 20rpx;
+			}
+		}
+	}
+
+	.edit-pannel {
+		height: 150px;
+		width: 300px;
+		padding: 30rpx;
+		border-radius: 20px;
+
+		.tags {
+			display: flex;
+
+			label {
+				line-height: 35px;
+			}
+		}
+	}
+
+	.buttons {
+		display: flex;
+		justify-content: space-around;
+		margin-top: 20px;
+		.cancel,
+		.save {
+			padding: 10rpx 40rpx;
+			background-color: #F7F7F7;
+			color: grey;
+		}
+
+		.save {
+			color: goldenrod;
+		}
+	}
+	.uni-button{
+		margin-right: 10px;
+	}
 </style>
