@@ -62,7 +62,7 @@ const isFirstUser = async function(event, context) {
 		context
 	});
 	const db = dbJQL;
-	return db.collection("db_admin_user").get()
+	return db.collection("db_admin_user").field("_id").get()
 }
 
 const allCategories = async function(event, context) {
@@ -330,9 +330,6 @@ exports.main = async (event, context) => {
 			break;
 		case 'isFirstUser':
 			result = await isFirstUser(event, context);
-			if(result.data.data.length>0){
-				result.data.data=[1]
-			}
 			break;
 		case 'allCategories':
 			result = await allCategories(event, context);
