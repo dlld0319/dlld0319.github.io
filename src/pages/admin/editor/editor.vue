@@ -15,7 +15,7 @@
 				<uni-easyinput v-model="title" placeholder="请输入用户名" />
 			</view>
 			<view class="" style="height: 80vh;overflow-y: auto;background-color:#ebebeb ;">
-				<sp-editor @input="input" ></sp-editor>
+				<sp-editor @input="input" @upinImage="upinImage"></sp-editor>
 			</view>
 		</view>
 	</admin-layout>
@@ -28,7 +28,7 @@
 			return {
 				title: '',
 				range: [],
-				category:'',
+				category: '',
 			};
 		},
 		async onLoad() {
@@ -39,29 +39,38 @@
 				console.log('==== input :', e)
 				this.category = e;
 			},
-			// upinImage(tempFiles, editorCtx) {
-			// 	// 使用 uniCloud.uploadFile 上传图片的示例方法（可适用多选上传）
-			// 	tempFiles.forEach(async (item) => {
-			// 		uni.showLoading({
-			// 			title: '上传中请稍后',
-			// 			mask: true
-			// 		})
-			// 		let upfile = await uniCloud.uploadFile({
-			// 			filePath: item.path,
-			// 			// 同名会导致报错 policy_does_not_allow_file_overwrite
-			// 			// cloudPath可由 想要存储的文件夹/文件名 拼接，若不拼文件夹名则默认存储在cloudstorage文件夹中
-			// 			cloudPath: `cloudstorage/${item.name}`,
-			// 			cloudPathAsRealPath: true
-			// 		})
-			// 		editorCtx.insertImage({
-			// 			src: upfile.fileID,
-			// 			width: '80%',
-			// 			success: function() {
-			// 				uni.hideLoading()
-			// 			}
-			// 		})
-			// 	})
-			// },
+			upinImage(tempFiles, editorCtx) {
+				const storageSpace = uniCloud.init({
+					provider: 'aliyun',
+					spaceId: 'mp-fb19cbbf-7877-4ed9-b04c-6ee15f347da4',
+					clientSecret: '0B44waxkzL3NV2Zl3zkjeA==',
+					endpoint: 'https://file-unifxpdtcb-mp-fb19cbbf-7877-4ed9-b04c-6ee15f347da4.oss-cn-zhangjiakou.aliyuncs.com'
+				})
+				
+				// 使用 uniCloud.uploadFile 上传图片的示例方法（可适用多选上传）
+				tempFiles.forEach(async (item) => {
+					uni.showLoading({
+						title: '上传中请稍后',
+						mask: true
+					})
+					console.log(item)
+					const upfile = await storageSpace.uploadFile({
+						filePath: item.path,
+						// 同名会导致报错 policy_does_not_allow_file_overwrite
+						// cloudPath可由 想要存储的文件夹/文件名 拼接，若不拼文件夹名则默认存储在cloudstorage文件夹中
+						cloudPath: `cloudstorage/${item.name}`,
+						cloudPathAsRealPath: true
+					})
+
+					editorCtx.insertImage({
+						src: upfile.fileID,
+						width: '80%',
+						success: function() {
+							uni.hideLoading()
+						}
+					})
+				})
+			},
 			goBack() {
 				uni.redirectTo({
 					url: '/pages/admin/articles/articles'
@@ -75,7 +84,7 @@
 			},
 			async getCategorys() {
 				const self = this;
-				const allcategories =( await _.allCategories());
+				const allcategories = (await _.allCategories());
 				console.log(allcategories.data);
 				let array = [];
 				allcategories.data.map(b => {

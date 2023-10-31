@@ -54,6 +54,19 @@ const saveArticles=async function(content,title,categoryids){
 	return await http.post('saveArticles',body);
 }
 
+const uploadFile=async function(file,name){
+	let a=window.btoa(String.fromCharCode(...new Uint8Array(file.buf)));
+	debugger
+	
+	const body={
+		buffer:{
+			buf: a,
+			filename:name
+		}
+	}
+	return await http.post('upload',body);
+}
+
 export {
 	login,
 	createUser,
@@ -62,5 +75,5 @@ export {
 	createCategory,
 	deleteCategory,
 	updateCategoryName,
-	saveArticles,
+	saveArticles,uploadFile
 }

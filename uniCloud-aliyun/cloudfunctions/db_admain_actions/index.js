@@ -21,6 +21,18 @@ function bodyToJson(body) {
 // 	return main;
 // }
 
+const uploadFile=async function(event, context){
+	var body = bodyToJson(event.body);
+	let upfile = await uniCloud.uploadFile({
+		fileContent:body.buffer.buf,
+		// 同名会导致报错 policy_does_not_allow_file_overwrite
+		// cloudPath可由 想要存储的文件夹/文件名 拼接，若不拼文件夹名则默认存储在cloudstorage文件夹中
+		cloudPath: `cloudstorage/${+new Date()}.jpeg`,
+		cloudPathAsRealPath: true
+	});
+	return upfile;
+}
+
 const login = async function(event, context) {
 	var body = bodyToJson(event.body);
 	console.log(body)
@@ -190,6 +202,9 @@ exports.main = async (event, context) => {
 			break;
 		case 'saveArticles':
 			result=await saveArticles(event,context);
+			break;
+		case 'upload':
+			result=await uploadFile(event,context);
 			break;
 	}
 	return result;
