@@ -21,17 +21,6 @@ function bodyToJson(body) {
 // 	return main;
 // }
 
-const uploadFile=async function(event, context){
-	var body = bodyToJson(event.body);
-	let upfile = await uniCloud.uploadFile({
-		fileContent:body.buffer.buf,
-		// 同名会导致报错 policy_does_not_allow_file_overwrite
-		// cloudPath可由 想要存储的文件夹/文件名 拼接，若不拼文件夹名则默认存储在cloudstorage文件夹中
-		cloudPath: `cloudstorage/${+new Date()}.jpeg`,
-		cloudPathAsRealPath: true
-	});
-	return upfile;
-}
 
 const login = async function(event, context) {
 	var body = bodyToJson(event.body);
@@ -171,6 +160,41 @@ const saveArticles=async function(event, context){
 	})
 }
 
+const allArticles = async function(event, context) {
+	var body = bodyToJson(event.body);
+	var pageIndex = body.pageIndex;
+	var pageSize = body.pageSize;
+	var keyWords=body.keyWords;
+	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
+		event,
+		context
+	});
+	const db = dbJQL;
+	if (!pageIndex) {
+		return db.collection("db_articles")
+			.where('isdeleted == "false"')
+			.get({
+				getCount: true
+			})
+	}
+	if(keyWords){
+		return db.collection("db_articles")
+			.where(`isdeleted == "false" && /${keyWords}/.test(title)`)
+			.skip((pageIndex - 1) * pageSize) // 跳过前20条
+			.limit(pageSize) // 获取20条
+			.get({
+				getCount: true
+			})
+	}
+	return db.collection("db_articles")
+		.where('isdeleted == "false"')
+		.skip((pageIndex - 1) * pageSize) // 跳过前20条
+		.limit(pageSize) // 获取20条
+		.get({
+			getCount: true
+		})
+}
+
 
 exports.main = async (event, context) => {
 	var type = event.queryStringParameters.type;
@@ -203,8 +227,8 @@ exports.main = async (event, context) => {
 		case 'saveArticles':
 			result=await saveArticles(event,context);
 			break;
-		case 'upload':
-			result=await uploadFile(event,context);
+		case 'allArticles':
+			result=await allArticles(event,context);
 			break;
 	}
 	return result;

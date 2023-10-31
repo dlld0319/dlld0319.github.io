@@ -10,16 +10,14 @@
 						<uni-table ref="table" :loading="loading" border stripe emptyText="暂无更多数据">
 							<uni-tr>
 								<uni-th width="150" align="center">日期</uni-th>
-								<uni-th width="150" align="center">姓名</uni-th>
-								<uni-th align="center">地址</uni-th>
+								<uni-th width="150" align="center">名称</uni-th>
 								<uni-th width="204" align="center">设置</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item, index) in tableData" :key="index">
-								<uni-td>{{ item.date }}</uni-td>
+								<uni-td>{{ item.createdtime }}</uni-td>
 								<uni-td>
-									<view class="name">{{ item.name }}</view>
+									<view class="name">{{ item.title }}</view>
 								</uni-td>
-								<uni-td align="center">{{ item.address }}</uni-td>
 								<uni-td>
 									<view class="uni-group">
 										<button class="uni-button" size="mini" type="primary">修改</button>
@@ -56,6 +54,7 @@
 			};
 		},
 		onLoad() {
+			this.getList();
 		},
 		methods: {
 			create(){
@@ -67,6 +66,14 @@
 				this.$refs.table.clearSelection()
 				this.selectedIndexs.length = 0
 				this.getData(e.current)
+			},
+			async getList() {
+				this.loading = true;
+				const allList = (await _.allArticles(this.pageCurrent, this.pageSize,));
+				console.log(allList);
+				this.total = allList.count;
+				this.tableData = allList.data;
+				this.loading = false;
 			},
 		}
 	}

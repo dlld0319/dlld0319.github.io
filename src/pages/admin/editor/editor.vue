@@ -29,10 +29,12 @@
 				title: '',
 				range: [],
 				category: '',
-				content:''
+				content:'',
+				articleId:'',
 			};
 		},
-		async onLoad() {
+		async onLoad(options) {
+			this.articleId=options.id;
 			await this.getCategorys();
 		},
 		methods: {
@@ -78,9 +80,6 @@
 			},
 			change(e) {
 				console.log("e:", e);
-			},
-			save() {
-
 			},
 			async getCategorys() {
 				const self = this;
