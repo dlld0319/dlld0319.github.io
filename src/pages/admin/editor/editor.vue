@@ -15,7 +15,7 @@
 				<uni-easyinput v-model="title" placeholder="请输入用户名" />
 			</view>
 			<view class="" style="height: 80vh;overflow-y: auto;background-color:#ebebeb ;">
-				<sp-editor @input="input" @upinImage="upinImage"></sp-editor>
+				<sp-editor @input="input" @upinImage="upinImage" ref="ed"></sp-editor>
 			</view>
 		</view>
 	</admin-layout>
@@ -29,21 +29,25 @@
 				title: '',
 				range: [],
 				category: '',
-				content:'',
-				articleId:'',
+				content: '',
+				articleId: '',
 			};
 		},
 		async onLoad(options) {
-			this.articleId=options.id;
+			this.articleId = options.id;
 			await this.getCategorys();
-			if(this.articleId){
+			if (this.articleId) {
 				this.initInfo();
 			}
 		},
 		methods: {
-			async initInfo(){
-				const info=await _.getOneArticle(this.articleId);
-				console.log(info)
+			async initInfo() {
+				const info = await _.getOneArticle(this.articleId);
+				this.title = info.data[0].title;
+				this.content = info.data[0].content;
+				this.category = info.data[0].categoryids
+				console.log(this.content);
+				this.$refs.ed.preRender(this.content.html)
 			},
 			input(e) {
 				console.log('==== input :', e)
@@ -55,7 +59,7 @@
 					spaceId: 'mp-fb19cbbf-7877-4ed9-b04c-6ee15f347da4',
 					clientSecret: '0B44waxkzL3NV2Zl3zkjeA==',
 				})
-				
+
 				// 使用 uniCloud.uploadFile 上传图片的示例方法（可适用多选上传）
 				tempFiles.forEach(async (item) => {
 					uni.showLoading({
@@ -102,9 +106,17 @@
 				this.range = array;
 				console.log(array)
 			},
-			async save(){
-				const result= _.saveArticles(this.content,this.title,this.category);
-				console.log(result)
+			async save() {
+				if (this.articleId) {
+					const result = _.saveArticlesEdit(this.content, this.title, this.category, this.articleId)
+					console.log(result)
+				} else {
+					const result = _.saveArticles(this.content, this.title, this.category);
+					console.log(result)
+				}
+				uni.navigateTo({
+					url:'/pages/admin/articles/articles'
+				})
 			}
 		}
 	}

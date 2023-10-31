@@ -76,8 +76,8 @@
 				this.loading = false;
 			},
 			edit(id){
-				uni.navigateTo({
-					url:'pages/admin/editor/editor?id='+id
+				uni.redirectTo({
+					url:'/pages/admin/editor/editor?id='+id
 				})
 			},
 		}

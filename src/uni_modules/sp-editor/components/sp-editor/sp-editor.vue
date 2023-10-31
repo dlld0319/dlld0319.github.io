@@ -242,10 +242,10 @@ export default {
 				.exec((result) => {})
 			// #endif
 		},
-		preRender() {
+		preRender(html) {
 			// 初始化富文本时自带的文字模板
 			this.editorCtx.setContents({
-				html: this.templates
+				html: html||this.templates
 			})
 		},
 		undo() {

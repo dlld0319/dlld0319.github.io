@@ -198,11 +198,14 @@ const allArticles = async function(event, context) {
 const getOneArticle = async function(event, context){
 	var body = bodyToJson(event.body);
 	var {id} =body;
+	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
+		event,
+		context
+	});
+	const db = dbJQL;
 	return db.collection("db_articles")
-		.where(`isdeleted == "false" && _id=${id}`)
-		.get({
-			getCount: true
-		})
+		.where({isdeleted:'false',_id:id})
+		.get()
 }
 
 const saveArticlesEdit=async function(event, context){
