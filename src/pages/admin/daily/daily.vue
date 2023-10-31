@@ -11,7 +11,7 @@
 							<uni-table ref="table" :loading="loading" border stripe emptyText="暂无更多数据">
 								<uni-tr>
 									<uni-th width="150" align="center">时间戳</uni-th>
-									<uni-th width="150" align="center">名称</uni-th>
+									<uni-th width="150" align="center">内容</uni-th>
 									<uni-th width="204" align="center">操作</uni-th>
 								</uni-tr>
 								<uni-tr v-for="(item, index) in tableData" :key="index">
@@ -41,8 +41,8 @@
 		<uni-popup ref="popup" background-color="#fff">
 			<view class="edit-pannel">
 				<view class="tags">
-					<label for="">类型名称：</label>
-					<uni-easyinput type="textarea" placeholder="请输入类型名称" v-model="categoryName" />
+					<label for="">内容：</label>
+					<uni-easyinput type="textarea" placeholder="请输入内容" v-model="categoryName" />
 				</view>
 				<view class="buttons">
 					<view class="save" @tap="save()">
