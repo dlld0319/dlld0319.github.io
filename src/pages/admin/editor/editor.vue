@@ -2,7 +2,7 @@
 	<admin-layout>
 		<view class="container">
 			<view class="title">
-				<view class="save">
+				<view class="save" @tap="save()">
 					保存
 				</view>
 				<view class="back" @tap="goBack()">
@@ -29,6 +29,7 @@
 				title: '',
 				range: [],
 				category: '',
+				content:''
 			};
 		},
 		async onLoad() {
@@ -37,7 +38,7 @@
 		methods: {
 			input(e) {
 				console.log('==== input :', e)
-				this.category = e;
+				this.content = e;
 			},
 			upinImage(tempFiles, editorCtx) {
 				const storageSpace = uniCloud.init({
@@ -94,6 +95,10 @@
 				})
 				this.range = array;
 				console.log(array)
+			},
+			async save(){
+				const result= _.saveArticles(this.content,this.title,this.category);
+				console.log(result)
 			}
 		}
 	}
