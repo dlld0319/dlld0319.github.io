@@ -20,7 +20,7 @@
 								</uni-td>
 								<uni-td>
 									<view class="uni-group">
-										<button class="uni-button" size="mini" type="primary">修改</button>
+										<button class="uni-button" size="mini" type="primary" @tap="edit(item._id)">修改</button>
 										<button class="uni-button" size="mini" type="warn">删除</button>
 									</view>
 								</uni-td>
@@ -74,6 +74,11 @@
 				this.total = allList.count;
 				this.tableData = allList.data;
 				this.loading = false;
+			},
+			edit(id){
+				uni.navigateTo({
+					url:'pages/admin/editor/editor?id='+id
+				})
 			},
 		}
 	}

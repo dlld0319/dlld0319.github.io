@@ -60,7 +60,19 @@ const allArticles = async function(pageIndex, pageSize,keyWords) {
 	}
 	return await http.post('allArticles',body);
 }
+const saveArticlesEdit= async function(content, title,categoryids,id){
+	const body={
+		id,content, title,categoryids
+	}
+	return await http.post('saveArticlesEdit',body);
+}
 
+const getOneArticle= async function(id){
+	const body={
+		id
+	}
+	return await http.post('getOneArticle',body);
+}
 
 export {
 	login,
@@ -72,4 +84,6 @@ export {
 	updateCategoryName,
 	saveArticles,
 	allArticles,
+	saveArticlesEdit,
+	getOneArticle,
 }

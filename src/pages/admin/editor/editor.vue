@@ -36,8 +36,15 @@
 		async onLoad(options) {
 			this.articleId=options.id;
 			await this.getCategorys();
+			if(this.articleId){
+				this.initInfo();
+			}
 		},
 		methods: {
+			async initInfo(){
+				const info=await _.getOneArticle(this.articleId);
+				console.log(info)
+			},
 			input(e) {
 				console.log('==== input :', e)
 				this.content = e;

@@ -195,6 +195,34 @@ const allArticles = async function(event, context) {
 		})
 }
 
+const getOneArticle = async function(event, context){
+	var body = bodyToJson(event.body);
+	var {id} =body;
+	return db.collection("db_articles")
+		.where(`isdeleted == "false" && _id=${id}`)
+		.get({
+			getCount: true
+		})
+}
+
+const saveArticlesEdit=async function(event, context){
+	var body = bodyToJson(event.body);
+	var {
+		content,title,categoryids,id
+	}=body;
+	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
+		event,
+		context
+	});
+	const db = dbJQL;
+	return db.collection("db_articles").where({
+			_id: id
+		})
+		.update({
+			content,title,categoryids
+		})
+	
+}
 
 exports.main = async (event, context) => {
 	var type = event.queryStringParameters.type;
@@ -229,6 +257,12 @@ exports.main = async (event, context) => {
 			break;
 		case 'allArticles':
 			result=await allArticles(event,context);
+			break;
+		case 'getOneArticle':
+			result=await getOneArticle(event,context);
+			break;
+		case 'saveArticlesEdit':
+			result=await saveArticlesEdit(event,context);
 			break;
 	}
 	return result;
