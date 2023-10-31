@@ -227,6 +227,95 @@ const saveArticlesEdit=async function(event, context){
 	
 }
 
+
+const alldailies = async function(event, context) {
+	var body = bodyToJson(event.body);
+	var pageIndex = body.pageIndex
+	var pageSize = body.pageSize
+	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
+		event,
+		context
+	});
+	const db = dbJQL;
+	if (!pageIndex) {
+		return db.collection("db_daily")
+			.where('isdeleted == "false"')
+			.get({
+				getCount: true
+			})
+	}
+	return db.collection("db_daily")
+		.where('isdeleted == "false"')
+		.skip((pageIndex - 1) * pageSize) // 跳过前20条
+		.limit(pageSize) // 获取20条
+		.get({
+			getCount: true
+		})
+}
+
+
+const createDaily = async function(event, context) {
+	var body = bodyToJson(event.body);
+	var content = body.content;
+	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
+		event,
+		context
+	});
+	const db = dbJQL;
+	return db.collection("db_daily").add({
+		content: content,
+		isdeleted: 'false',
+		createdtime: +new Date()
+	})
+}
+
+
+const deleteDaily = async function(event, context) {
+	var body = bodyToJson(event.body);
+	var id = body.id;
+	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
+		event,
+		context
+	});
+	const db = dbJQL;
+	return db.collection("db_daily").where({
+			_id: id
+		})
+		.update({
+			isdeleted: "true"
+		})
+}
+
+const updateDaily = async function(event, context) {
+	var body = bodyToJson(event.body);
+	var id = body.id
+	var content = body.content
+	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
+		event,
+		context
+	});
+	const db = dbJQL;
+	return db.collection("db_daily").where({
+			_id: id
+		})
+		.update({
+			content: content
+		})
+}
+
+const getOneDaily=async function(event, context){
+	var {id}=body;
+	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
+		event,
+		context
+	});
+	const db = dbJQL;
+	return db.collection("db_daily").where({
+			_id: id
+		})
+		.get();
+}
+
 exports.main = async (event, context) => {
 	var type = event.queryStringParameters.type;
 	var result = null;
@@ -266,6 +355,21 @@ exports.main = async (event, context) => {
 			break;
 		case 'saveArticlesEdit':
 			result=await saveArticlesEdit(event,context);
+			break;
+		case 'alldailies':
+			result=await alldailies(event,context);
+			break;
+		case 'createDaily':
+			result=await createDaily(event,context);
+			break;
+		case 'updateDaily':
+			result=await updateDaily(event,context);
+			break;
+		case 'deleteDaily':
+			result=await deleteDaily(event,context);
+			break;
+		case 'getOneDaily':
+			result=await getOneDaily(event,context);
 			break;
 	}
 	return result;

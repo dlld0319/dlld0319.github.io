@@ -107,6 +107,10 @@
 				console.log(array)
 			},
 			async save() {
+				uni.showLoading({
+					title: '保存中请稍后',
+					mask: true
+				})
 				if (this.articleId) {
 					const result = _.saveArticlesEdit(this.content, this.title, this.category, this.articleId)
 					console.log(result)
@@ -114,8 +118,9 @@
 					const result = _.saveArticles(this.content, this.title, this.category);
 					console.log(result)
 				}
+				uni.hideLoading()
 				uni.navigateTo({
-					url:'/pages/admin/articles/articles'
+					url: '/pages/admin/articles/articles'
 				})
 			}
 		}
