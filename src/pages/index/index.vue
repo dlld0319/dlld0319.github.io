@@ -3,7 +3,7 @@
 		<view class="content">
 			<view class="text-area">
 				<view v-for="item in data" :key="item.id">
-					<view class="box">
+					<view class="box" @tap="viewDetail(item._id)">
 						<view class="box-title">
 							{{ item.title }}
 						</view>
@@ -55,6 +55,11 @@
 				// this.selectedIndexs.length = 0
 				this.getList(e.current)
 			},
+			viewDetail(id){
+				uni.redirectTo({
+					url:'/pages/article-detail/article-detail?id='+id
+				})
+			}
 		}
 	}
 </script>

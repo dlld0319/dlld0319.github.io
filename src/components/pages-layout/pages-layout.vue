@@ -1,7 +1,11 @@
 <template>
 	<view class="layout">
 		<view class="top">
-
+			<view class="menus" v-for="(items,indexs) in menus[0].children" :key="indexs">
+				<view class="menu" @tap="items.url">
+					{{items.name}}
+				</view>
+			</view>
 		</view>
 		<view class="content">
 			<uni-row class="demo-uni-row">
@@ -29,18 +33,51 @@
 </template>
 
 <script>
+	import * as _ from '../../pages/admin/admin-sql.js'
 	export default {
 		name: "pages-layout",
 		data() {
 			return {
-
-			};
+				categorys:[],
+				menus:[
+					{
+						name:'主页',
+						url:'',
+						children:[
+							{
+								name:'文章',
+								url:'/pages/index/index'
+							},
+							{
+								name:'分类',
+								url:'/pages/admin/categorys/categorys'
+							},
+							{
+								name:'说说',
+								url:'/pages/admin/daily/daily'
+							}
+						]
+					}],
+			}
+		},
+		created() {
+			this.initCategory();
 		},
 		methods: {
 			now() {
 				const defaultYear = '2023'
 				return `${defaultYear}-${(new Date().getFullYear())}`
 			},
+			async initCategory(){
+				const result=await _.allCategories();
+				this.categorys=result.data.map(o=>o.name)
+				console.log(this.categorys)
+			},
+			go(url){
+				uni.navigateTo({
+					url:url
+				})
+			}
 		}
 	}
 </script>
@@ -51,7 +88,17 @@
 		height: 100vh;
 	}
 	.top {
-		height: 100px;
+		height: 150px;
+		text-align: center;
+		.menus{
+			padding-top: 40px;
+			display: inline-block;
+			margin: 0 20px;
+			.menu{
+				font-size: 20px;
+				line-height: 30px;
+			}
+		}
 	}
 
 	.content {}
