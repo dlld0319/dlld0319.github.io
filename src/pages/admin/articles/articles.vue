@@ -64,7 +64,7 @@
 			},
 			change(e) {
 				this.$refs.table.clearSelection()
-				this.selectedIndexs.length = 0
+				// this.selectedIndexs.length = 0
 				this.getData(e.current)
 			},
 			async getList() {

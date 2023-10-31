@@ -2,22 +2,22 @@
 	<pages-layout>
 		<view class="content">
 			<view class="text-area">
-				<scroll-view scroll-y="true" class="scroll-Y" @scrolltolower="lower">
-					<view v-for="item in data" :key="item.id">
-						<view class="box">
-							<view class="box-title">
-								{{ item.title }}
-							</view>
-							<view class="box-text">
-								{{item.content.text}}
-							</view>
-							<view class="box-time">
-								<uni-dateformat :date="item.createdtime" format="yyyy-MM-dd hh:mm"></uni-dateformat>
-							</view>
+				<view v-for="item in data" :key="item.id">
+					<view class="box">
+						<view class="box-title">
+							{{ item.title }}
+						</view>
+						<view class="box-text">
+							{{item.content.text}}
+						</view>
+						<view class="box-time">
+							<uni-dateformat :date="item.createdtime" format="yyyy-MM-dd hh:mm"></uni-dateformat>
 						</view>
 					</view>
-				</scroll-view>
+				</view>
 			</view>
+			<uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total"
+				@change="change" />
 		</view>
 	</pages-layout>
 </template>
@@ -44,13 +44,17 @@
 				const allList = (await _.allArticles(this.pageCurrent, this.pageSize, ));
 				console.log(allList);
 				this.total = allList.count;
-				this.data = [...this.data, ...allList.data];
+				this.data =allList.data;
 				this.loading = false;
 			},
 			lower() {
 				this.pageCurrent++;
 				this.getList();
-			}
+			},
+			change(e) {
+				// this.selectedIndexs.length = 0
+				this.getList(e.current)
+			},
 		}
 	}
 </script>
@@ -73,8 +77,8 @@
 	}
 
 	.text-area {
-		display: flex;
-		justify-content: center;
+		// display: flex;
+		// justify-content: center;
 		width: 100%;
 		height: 100%;
 	}
