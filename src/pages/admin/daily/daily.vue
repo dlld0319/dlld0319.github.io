@@ -22,7 +22,7 @@
 									<uni-td>
 										<view class="uni-group">
 											<button class="uni-button" size="mini" type="primary"
-												@tap="updatePop(item._id)">修改</button>
+												@tap="updatePop(item._id, item.content)">修改</button>
 											<button class="uni-button" size="mini" type="warn"
 												@tap="deleteData(item._id)">删除</button>
 										</view>
@@ -84,6 +84,7 @@
 		},
 		methods: {
 			create() {
+				this.categoryName='';
 				this.createPop();
 			},
 			change(e) {
@@ -102,8 +103,9 @@
 			createPop() {
 				this.$refs.popup.open('center');
 			},
-			updatePop(id) {
+			updatePop(id,content) {
 				this.updateId = id;
+				this.categoryName=content;
 				this.$refs.popup.open('center');
 			},
 			cancel() {
@@ -116,6 +118,7 @@
 				} else {
 					await _.createDaily(this.categoryName);
 				}
+				this.categoryName='';
 				this.$refs.popup.close();
 				await this.getList();
 			},
