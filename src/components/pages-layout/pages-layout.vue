@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="layout">
 		<view class="top">
 
 		</view>
@@ -46,6 +46,10 @@
 </script>
 
 <style lang="scss" scoped>
+	.layout{
+		background-color: #F4F5F7;
+		height: 100vh;
+	}
 	.top {
 		height: 100px;
 	}
