@@ -2,7 +2,7 @@
 	<view class="layout">
 		<view class="top">
 			<view class="menus" v-for="(items,indexs) in menus[0].children" :key="indexs">
-				<view class="menu" @tap="items.url">
+				<view class="menu" @tap="go(items.url)">
 					{{items.name}}
 				</view>
 			</view>
@@ -50,11 +50,11 @@
 							},
 							{
 								name:'分类',
-								url:'/pages/admin/categorys/categorys'
+								url:'/pages/categorys/categorys'
 							},
 							{
 								name:'说说',
-								url:'/pages/admin/daily/daily'
+								url:'/pages/daily/daily'
 							}
 						]
 					}],
