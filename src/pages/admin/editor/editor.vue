@@ -44,7 +44,6 @@
 					provider: 'aliyun',
 					spaceId: 'mp-fb19cbbf-7877-4ed9-b04c-6ee15f347da4',
 					clientSecret: '0B44waxkzL3NV2Zl3zkjeA==',
-					endpoint: 'https://file-unifxpdtcb-mp-fb19cbbf-7877-4ed9-b04c-6ee15f347da4.oss-cn-zhangjiakou.aliyuncs.com'
 				})
 				
 				// 使用 uniCloud.uploadFile 上传图片的示例方法（可适用多选上传）
