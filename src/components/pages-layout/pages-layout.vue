@@ -6,6 +6,11 @@
 					{{items.name}}
 				</view>
 			</view>
+			<view class="menus">
+				<view class="menu">
+					<uni-icons type="search" size="28"></uni-icons>
+				</view>
+			</view>
 		</view>
 		<view class="content">
 			<uni-row class="demo-uni-row">
