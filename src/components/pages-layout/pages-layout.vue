@@ -9,22 +9,32 @@
 		</view>
 		<view class="content">
 			<uni-row class="demo-uni-row">
-				<uni-col :span="4">
-					<view class="demo-uni-col dark"></view>
+				<uni-col :span="4" :xs="0">
+					<view class="demo-uni-col dark">
+						<view class="myInfo">
+							<view class="info-title">
+								我的信息
+							</view>
+							<view class="info-detail">
+								{{infoDetail}}
+								<text @tap="setClipboard()">欢迎邮箱联系,点击复制</text>
+							</view>
+						</view>
+					</view>
 				</uni-col>
-				<uni-col :span="16">
+				<uni-col :span="16" :xs="24">
 					<view class="demo-uni-col dark">
 						<slot></slot>
 					</view>
 				</uni-col>
-				<uni-col :span="4">
+				<uni-col :span="4" :xs="0">
 					<view class="demo-uni-col dark"></view>
 				</uni-col>
 			</uni-row>
 		</view>
 		<view class="bottom">
 			<uni-row class="demo-uni-row">
-				<uni-col :span="12" :push="6">
+				<uni-col :span="12" :push="6" :xs="18">
 					<view class="demo-uni-col dark">Copyright © {{now()}} liangdong</view>
 				</uni-col>
 			</uni-row>
@@ -58,10 +68,12 @@
 							}
 						]
 					}],
+					infoDetail:'本人擅长并乐意从事各种软件开发相关工作，现掌握nodejs相关、前端页面技术、postgre与sqlserver',
 			}
 		},
 		created() {
 			this.initCategory();
+			
 		},
 		methods: {
 			now() {
@@ -77,6 +89,17 @@
 				uni.navigateTo({
 					url:url
 				})
+			},
+			setClipboard(){
+				uni.setClipboardData({
+					data:'ld122481669@126.com',
+					success() {
+						uni.showToast({
+							title:'复制成功',
+							duration:1500
+						})
+					}
+				})	
 			}
 		}
 	}

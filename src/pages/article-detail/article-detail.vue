@@ -34,6 +34,11 @@
 
 <style lang="scss" scoped>
 	.page-detail{
+		    min-height: 75vh;
+		    background: white;
+			padding-top: 20px;
+			padding-left: 20px;
+			padding-right: 20px;
 		.title{
 			font-size: 30px;
 			font-weight: 500;
