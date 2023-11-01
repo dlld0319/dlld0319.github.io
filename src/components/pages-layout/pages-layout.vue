@@ -6,7 +6,7 @@
 					{{items.name}}
 				</view>
 			</view>
-			<view class="menus">
+			<view class="menus" @tap="openSearch()">
 				<view class="menu">
 					<uni-icons type="search" size="28"></uni-icons>
 				</view>
@@ -22,7 +22,7 @@
 							</view>
 							<view class="info-detail">
 								{{infoDetail}}
-								<text @tap="setClipboard()">欢迎邮箱联系,点击复制</text>
+								<text @tap="setClipboard()">欢迎使用邮箱联系,点击复制</text>
 							</view>
 						</view>
 					</view>
@@ -44,7 +44,12 @@
 				</uni-col>
 			</uni-row>
 		</view>
+		<uni-popup ref="popup" background-color="#fff">
+			<uni-easyinput prefixIcon="search" v-model="searchValue" placeholder="左侧图标" @iconClick="iconClick">
+			</uni-easyinput>
+		</uni-popup>
 	</view>
+
 </template>
 
 <script>
@@ -53,76 +58,84 @@
 		name: "pages-layout",
 		data() {
 			return {
-				categorys:[],
-				menus:[
-					{
-						name:'主页',
-						url:'',
-						children:[
-							{
-								name:'文章',
-								url:'/pages/index/index'
-							},
-							{
-								name:'分类',
-								url:'/pages/categorys/categorys'
-							},
-							{
-								name:'说说',
-								url:'/pages/daily/daily'
-							}
-						]
-					}],
-					infoDetail:'本人擅长并乐意从事各种软件开发相关工作，现掌握nodejs相关、前端页面技术、postgre与sqlserver',
+				categorys: [],
+				menus: [{
+					name: '主页',
+					url: '',
+					children: [{
+							name: '文章',
+							url: '/pages/index/index'
+						},
+						{
+							name: '分类',
+							url: '/pages/categorys/categorys'
+						},
+						{
+							name: '说说',
+							url: '/pages/daily/daily'
+						}
+					]
+				}],
+				infoDetail: '本人擅长并乐意从事各种软件开发相关工作，现掌握nodejs相关、前端页面技术、postgre与sqlserver',
+				searchValue:'',
 			}
 		},
 		created() {
 			this.initCategory();
-			
+
 		},
 		methods: {
 			now() {
 				const defaultYear = '2023'
 				return `${defaultYear}-${(new Date().getFullYear())}`
 			},
-			async initCategory(){
-				const result=await _.allCategories();
-				this.categorys=result.data.map(o=>o.name)
+			async initCategory() {
+				const result = await _.allCategories();
+				this.categorys = result.data.map(o => o.name)
 				console.log(this.categorys)
 			},
-			go(url){
+			go(url) {
 				uni.navigateTo({
-					url:url
+					url: url
 				})
 			},
-			setClipboard(){
+			setClipboard() {
 				uni.setClipboardData({
-					data:'ld122481669@126.com',
+					data: 'ld122481669@126.com',
 					success() {
 						uni.showToast({
-							title:'复制成功',
-							duration:1500
+							title: '复制成功',
+							duration: 1500
 						})
 					}
-				})	
+				})
+			},
+			openSearch() {
+				this.$refs.popup.open('center')
+			},
+			iconClick(){
+				console.log(this.searchValue)
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	.layout{
+	.layout {
 		background-color: #F4F5F7;
 		height: 100vh;
 	}
+
 	.top {
 		height: 150px;
 		text-align: center;
-		.menus{
+
+		.menus {
 			padding-top: 40px;
 			display: inline-block;
 			margin: 0 20px;
-			.menu{
+
+			.menu {
 				font-size: 20px;
 				line-height: 30px;
 			}
