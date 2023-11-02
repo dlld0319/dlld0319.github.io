@@ -1,5 +1,5 @@
 <template>
-	<view class="layout">
+	<view class="layout"  style="overflow: auto;">
 		<view class="top">
 			<view class="menus" v-for="(items,indexs) in menus[0].children" :key="indexs">
 				<view :class="active.includes(items.url)?'active menu':'menu'" @tap="go(items.url)">

@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view  style="overflow: auto;">
 		<view class="top">
 			<view class="usermenu">
 				<text>{{userName}}</text>
