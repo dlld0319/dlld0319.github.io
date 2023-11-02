@@ -2,12 +2,12 @@
 	<view class="layout">
 		<view class="top">
 			<view class="menus" v-for="(items,indexs) in menus[0].children" :key="indexs">
-				<view class="menu" @tap="go(items.url)">
+				<view :class="active.includes(items.url)?'active menu':'menu'" @tap="go(items.url)">
 					{{items.name}}
 				</view>
 			</view>
 			<view class="menus" @tap="openSearch()">
-				<view class="menu">
+				<view class="menu ">
 					<uni-icons type="search" size="28"></uni-icons>
 				</view>
 			</view>
@@ -77,12 +77,15 @@
 					]
 				}],
 				infoDetail: '本人擅长并乐意从事各种软件开发相关工作，现掌握nodejs相关、前端页面技术、postgre与sqlserver',
-				searchValue:'',
+				searchValue: '',
+				active: '',
 			}
 		},
 		created() {
 			this.initCategory();
-
+			var pages = getCurrentPages();
+			var currentPage = pages[pages.length - 1] //获取当前页面的对象
+			this.active = currentPage.route //当前页面url
 		},
 		methods: {
 			now() {
@@ -113,7 +116,7 @@
 			openSearch() {
 				this.$refs.popup.open('center')
 			},
-			iconClick(){
+			iconClick() {
 				console.log(this.searchValue)
 			}
 		}
@@ -138,6 +141,21 @@
 			.menu {
 				font-size: 20px;
 				line-height: 30px;
+			}
+
+			.active {
+				position: relative;
+			}
+
+			.active::before {
+				position: absolute;
+				bottom: -10px;
+				left: 50%;
+				transform: translate(-50%);
+				width: 30px;
+				height: 2px;
+				content: ' ';
+				background-color: #ff8182;
 			}
 		}
 	}
