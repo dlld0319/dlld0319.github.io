@@ -103,7 +103,7 @@
       applyProperties(this.element, this.initialStyles);
       this.update();
       
-      document.body.appendChild(this.element);
+      document.getElementById('top').appendChild(this.element);
     };
     
     this.update = function() {
