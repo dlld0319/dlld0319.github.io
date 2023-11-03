@@ -8,7 +8,7 @@
 							{{ item.title }}
 						</view>
 						<view class="box-text">
-							{{item.content.text?.substring(0,50)}}
+							{{item.content.text.substring(0,50)}}
 						</view>
 						<view class="box-time">
 							<uni-dateformat :date="item.createdtime" format="yyyy-MM-dd hh:mm"></uni-dateformat>
