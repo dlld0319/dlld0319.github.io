@@ -1,5 +1,9 @@
 <template>
+	
 	<view class="layout"  style="overflow: auto;">
+		<view class="gotoadmin" @tap="gotoadmain()">
+			去后台
+		</view>
 		<view class="top">
 			<view class="menus" v-for="(items,indexs) in menus[0].children" :key="indexs">
 				<view :class="active.includes(items.url)?'active menu':'menu'" @tap="go(items.url)">
@@ -118,12 +122,22 @@
 			},
 			iconClick() {
 				console.log(this.searchValue)
+			},
+			gotoadmain(){
+				uni.navigateTo({
+					url:'/pages/admin/index/index'
+				})
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
+	.gotoadmin{
+		position: absolute;
+		right: 20px;
+		top: 10px;
+	}
 	.layout {
 		background-color: #F4F5F7;
 		height: 100vh;
