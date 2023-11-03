@@ -163,7 +163,7 @@
 	.content {}
 
 	.bottom {
-		position: absolute;
+		position: fixed;
 		bottom: 0;
 		height: 50px;
 		line-height: 50px;
