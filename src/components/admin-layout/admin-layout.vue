@@ -3,7 +3,7 @@
 		<view class="top">
 			<view class="usermenu">
 				<text>{{userName}}</text>
-				<image class="head" src="../../static/logo.png" mode=""></image>
+				<image class="head" src="../../static/logo.png" mode="" @tap="gotouser()"></image>
 			</view>
 		</view>
 		<view class="containt">
@@ -89,6 +89,11 @@
 				});
 				this.url=url;
 				console.log(this.url)
+			},
+			gotouser(){
+				uni.reLaunch({
+					url:'/pages/index/index'
+				})
 			}
 		}
 	}
