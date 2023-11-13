@@ -159,7 +159,8 @@
 	}
 
 	.layout {
-		background: url(//img.cdn.aliyun.dcloud.net.cn/hbuilderx/website/en/hx_bg@1x.png) no-repeat;
+		background: url(https://mp-fb19cbbf-7877-4ed9-b04c-6ee15f347da4.cdn.bspapp.com/images/background.png) no-repeat;
+		background-size: 100% 100%;
 		height: 100vh;
 	}
 

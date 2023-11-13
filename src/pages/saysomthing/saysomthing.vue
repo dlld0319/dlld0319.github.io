@@ -119,7 +119,7 @@
 			color: darkgray;
 		}
 	}
-	.uni-pagination-box{
+	.uni-pagination{
 		margin-bottom: 100px;
 	}
 </style>
