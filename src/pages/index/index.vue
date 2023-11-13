@@ -136,4 +136,7 @@
 			color: darkgray;
 		}
 	}
+	.uni-pagination-box{
+		margin-bottom: 100px;
+	}
 </style>
