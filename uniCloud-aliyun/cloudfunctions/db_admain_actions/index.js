@@ -165,6 +165,7 @@ const allArticles = async function(event, context) {
 	var pageIndex = body.pageIndex;
 	var pageSize = body.pageSize;
 	var keyWords=body.keyWords;
+	var category=body.category;
 	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
 		event,
 		context
@@ -180,6 +181,16 @@ const allArticles = async function(event, context) {
 	if(keyWords){
 		return db.collection("db_articles")
 			.where(`isdeleted == "false" && /${keyWords}/.test(title)`)
+			.skip((pageIndex - 1) * pageSize) // 跳过前20条
+			.limit(pageSize) // 获取20条
+			.get({
+				getCount: true
+			})
+	}
+		
+	if(category){
+		return db.collection("db_articles")
+			.where(`isdeleted == "false" && categoryids=="${category}"`)
 			.skip((pageIndex - 1) * pageSize) // 跳过前20条
 			.limit(pageSize) // 获取20条
 			.get({

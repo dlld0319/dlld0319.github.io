@@ -1,6 +1,6 @@
 <template>
-	
-	<view class="layout"  style="overflow: auto;">
+
+	<view class="layout" style="overflow: auto;">
 		<view class="gotoadmin" @tap="gotoadmain()">
 			去后台
 		</view>
@@ -25,8 +25,9 @@
 								我的信息
 							</view>
 							<view class="info-detail">
-								{{infoDetail}}
-								<text @tap="setClipboard()">欢迎使用邮箱联系,点击复制</text>
+								{{infoDetail}}<br>
+								<text style="font-weight: 600;cursor: pointer;    text-decoration: underline;"
+									@tap="setClipboard()">欢迎使用邮箱联系,点击复制</text>
 							</view>
 						</view>
 					</view>
@@ -49,8 +50,16 @@
 			</uni-row>
 		</view>
 		<uni-popup ref="popup" background-color="#fff">
-			<uni-easyinput prefixIcon="search" v-model="searchValue" placeholder="左侧图标" @iconClick="iconClick">
-			</uni-easyinput>
+			<view class="pop-search">
+				<view class="searchinput">
+					<uni-easyinput prefixIcon="search" v-model="searchValue" placeholder="请输入搜索内容"
+						@iconClick="iconClick">
+					</uni-easyinput>
+				</view>
+				<view class="searchbtn" @tap="search()">
+					搜索
+				</view>
+			</view>
 		</uni-popup>
 	</view>
 
@@ -76,7 +85,7 @@
 						},
 						{
 							name: '说说',
-							url: '/pages/daily/daily'
+							url: '/pages/saysomthing/saysomthing'
 						}
 					]
 				}],
@@ -102,7 +111,7 @@
 				console.log(this.categorys)
 			},
 			go(url) {
-				uni.navigateTo({
+				uni.reLaunch({
 					url: url
 				})
 			},
@@ -121,11 +130,20 @@
 				this.$refs.popup.open('center')
 			},
 			iconClick() {
-				console.log(this.searchValue)
+				this.search();
 			},
-			gotoadmain(){
+			gotoadmain() {
 				uni.navigateTo({
-					url:'/pages/admin/index/index'
+					url: '/pages/admin/index/index'
+				})
+			},
+			search() {
+				uni.$emit('keyword', {
+					keyword: this.searchValue
+				})
+				uni.reLaunch({
+					url: '/pages/index/index?keyword=' + this.searchValue,
+					success() {}
 				})
 			}
 		}
@@ -133,13 +151,15 @@
 </script>
 
 <style lang="scss" scoped>
-	.gotoadmin{
+	.gotoadmin {
 		position: absolute;
 		right: 20px;
 		top: 10px;
+		cursor: pointer;
 	}
+
 	.layout {
-		background-color: #F4F5F7;
+		background-color: #0a1e571c;
 		height: 100vh;
 	}
 
@@ -155,6 +175,7 @@
 			.menu {
 				font-size: 20px;
 				line-height: 30px;
+				cursor: pointer;
 			}
 
 			.active {
@@ -218,5 +239,49 @@
 
 	.light {
 		// background-color: #e5e9f2;
+	}
+
+	.myInfo {
+		display: block;
+		width: 150px;
+
+		.info-title {
+			display: block;
+			font-weight: 600;
+			font-size: 18px;
+		}
+
+		.info-detail {
+			display: block;
+			font-size: 15px;
+			font-weight: 500;
+			color: #878787;
+		}
+	}
+
+	.pop-search {
+		display: block;
+		padding: 50px 100px;
+		width: 300px;
+		background-color: #0a1e571c;
+		border-radius: 20px;
+
+		.searchinput {
+			display: inline-block;
+
+		}
+
+		.searchbtn {
+			background-color: #ff81829e;
+			color: #F4F5F7;
+			display: inline-block;
+			padding: 5px;
+			margin-left: 16px;
+			padding-top: 3px;
+			padding-bottom: 2px;
+			border-radius: 3px;
+			cursor: pointer;
+			vertical-align: text-bottom;
+		}
 	}
 </style>

@@ -16,8 +16,7 @@
 					</view>
 				</view>
 			</view>
-			<uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total"
-				@change="change" />
+			<uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total" @change="change" />
 		</view>
 	</pages-layout>
 </template>
@@ -32,19 +31,30 @@
 				pageSize: 10,
 				pageCurrent: 1,
 				total: 0,
-				loading: false
+				loading: false,
+				articleCategory:null,
 			}
 		},
-		onLoad() {
-			this.getList();
+		onLoad(options) {
+			console.log(options)
+			this.getList(options?.keyword||'',options?.category||'');
+		},
+		onShow(){
+			// const self=this;
+			// uni.$on('category',function(options){
+			// 	self.getList('',options?.category||'');
+			// })
+			// uni.$on('keyword',function(options){ 
+			// 	self.getList(options?.keyword||'','');
+			// })
 		},
 		methods: {
-			async getList() {
+			async getList(keyword,category) {
 				this.loading = true;
-				const allList = (await _.allArticles(this.pageCurrent, this.pageSize, ));
+				const allList = (await _.allArticles(this.pageCurrent, this.pageSize,keyword,category ));
 				console.log(allList);
 				this.total = allList.count;
-				this.data =allList.data;
+				this.data = allList.data;
 				this.loading = false;
 			},
 			lower() {
@@ -55,9 +65,9 @@
 				// this.selectedIndexs.length = 0
 				this.getList(e.current)
 			},
-			viewDetail(id){
-				uni.redirectTo({
-					url:'/pages/article-detail/article-detail?id='+id
+			viewDetail(id) {
+				uni.navigateTo({
+					url: '/pages/article-detail/article-detail?id=' + id
 				})
 			}
 		}
@@ -70,6 +80,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		    min-height: 30vh;
 	}
 
 	.logo {
@@ -116,6 +127,7 @@
 			margin-top: 10px;
 			font-size: 18px;
 			font-weight: 400;
+			color: #878787;
 		}
 
 		.box-time {

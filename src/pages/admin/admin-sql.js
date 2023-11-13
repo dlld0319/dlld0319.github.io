@@ -49,7 +49,7 @@ const updateCategoryName = async function(id, name) {
 		id,
 		name
 	}
-	return await http.post('deleteCategory', body);
+	return await http.post('updateCategoryName', body);
 }
 
 const saveArticles = async function(content, title, categoryids) {
@@ -61,11 +61,12 @@ const saveArticles = async function(content, title, categoryids) {
 	return await http.post('saveArticles', body);
 }
 
-const allArticles = async function(pageIndex, pageSize, keyWords) {
+const allArticles = async function(pageIndex, pageSize, keyWords,category) {
 	const body = {
 		pageIndex,
 		pageSize,
-		keyWords
+		keyWords,
+		category
 	}
 	return await http.post('allArticles', body);
 }

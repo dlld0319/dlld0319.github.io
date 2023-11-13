@@ -100,6 +100,7 @@
 				this.loading = false;
 			},
 			createPop() {
+				this.updateId=0;
 				this.$refs.popup.open('center');
 			},
 			updatePop(id,content) {
@@ -150,10 +151,10 @@
 	}
 
 	.edit-pannel {
-		height: 100rpx;
-		width: 300rpx;
-		padding: 30rpx;
-		border-radius: 20px;
+		    height: 150px;
+		    width: 300px;
+		    padding: 15px;
+		    border-radius: 20px;
 
 		.tags {
 			display: flex;
