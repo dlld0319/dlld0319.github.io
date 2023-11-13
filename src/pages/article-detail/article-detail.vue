@@ -27,7 +27,6 @@
 			async initArticle(id) {
 				const result = await _.getOneArticle(id);
 				this.articleInfo = result.data[0];
-				console.log(this.articleInfo)
 			}
 		}
 	}

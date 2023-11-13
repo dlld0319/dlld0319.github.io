@@ -50,7 +50,6 @@
 			async getList() {
 				this.loading = true;
 				const allList = (await _.alldailies(this.pageCurrent, this.pageSize));
-				console.log(allList);
 				this.total = allList.count;
 				this.tableData = allList.data;
 				this.loading = false;

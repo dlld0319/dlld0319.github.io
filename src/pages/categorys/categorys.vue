@@ -26,7 +26,6 @@
 		methods: {
 			async getList() {
 				const allList = (await _.allCategories());
-				console.log(allList);
 				this.categorids=allList.data;
 			},
 			gotoList(id){

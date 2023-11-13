@@ -88,7 +88,6 @@
 					url:url
 				});
 				this.url=url;
-				console.log(this.url)
 			},
 			gotouser(){
 				uni.reLaunch({

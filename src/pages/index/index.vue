@@ -38,7 +38,6 @@
 			}
 		},
 		onLoad(options) {
-			console.log(options)
 			this.keyword=options?.keyword||'';
 			this.category=options?.category||'';
 			this.getList(options?.keyword||'',options?.category||'');
@@ -56,7 +55,6 @@
 			async getList(keyword,category) {
 				this.loading = true;
 				const allList = (await _.allArticles(this.pageCurrent, this.pageSize,keyword,category ));
-				console.log(allList);
 				this.total = allList.count;
 				this.data = allList.data;
 				this.loading = false;

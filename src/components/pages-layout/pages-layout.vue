@@ -118,7 +118,6 @@
 			async initCategory() {
 				const result = await _.allCategories();
 				this.categorys = result.data.map(o => o.name)
-				console.log(this.categorys)
 			},
 			go(url) {
 				uni.reLaunch({
