@@ -30,6 +30,16 @@
 									@tap="setClipboard()">欢迎使用邮箱联系,点击复制</text>
 							</view>
 						</view>
+						
+						<view class="myInfo" style="margin-top: 50px;">
+							<view class="info-title">
+								个人简历
+							</view>
+							<view class="info-detail" style="padding: 20px 0;text-align: center;">
+								<text style="font-weight: 600;cursor: pointer;    text-decoration: underline;"
+									@tap="gotomyself()">点击去查看</text>
+							</view>
+						</view>
 					</view>
 				</uni-col>
 				<uni-col :span="16" :xs="24">
@@ -144,6 +154,11 @@
 				uni.reLaunch({
 					url: '/pages/index/index?keyword=' + this.searchValue,
 					success() {}
+				})
+			},
+			gotomyself(){
+				uni.navigateTo({
+					url: '/pages/article-detail/article-detail?id=' + '655204caa7c4329ea56c7838'
 				})
 			}
 		}
