@@ -63,9 +63,10 @@
 				})
 			},
 			change(e) {
-				this.$refs.table.clearSelection()
+				// this.$refs.table.clearSelection()
 				// this.selectedIndexs.length = 0
-				this.getData(e.current)
+				this.pageCurrent=e.current;
+				this.getList()
 			},
 			async getList() {
 				this.loading = true;

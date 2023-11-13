@@ -33,8 +33,10 @@ const login = async function(event, context) {
 		context
 	});
 	const db = dbJQL;
-	return db.collection("db_admin_user").get({
-		username: username
+	return db.collection("db_admin_user")
+	.where(`username == "${username}" && password=="${password}"`)
+	.get({
+		getCount: true
 	})
 }
 

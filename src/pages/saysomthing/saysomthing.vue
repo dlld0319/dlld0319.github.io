@@ -43,6 +43,10 @@
 			this.getList();
 		},
 		methods: {
+			change(e) {
+				this.pageCurrent = e.current;
+				this.getList()
+			},
 			async getList() {
 				this.loading = true;
 				const allList = (await _.alldailies(this.pageCurrent, this.pageSize));

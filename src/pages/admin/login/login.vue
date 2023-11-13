@@ -52,6 +52,13 @@
 			async login() {
 				const result = (await _.login(this.username, this.pwd)).data;
 				console.log(result);
+				if(result.length==0){
+					uni.showToast({
+						title:'错误的用户名或密码',
+						icon:'error'
+					})
+					return false;
+				}
 				uni.setStorageSync('userinfo', result[0]);
 				uni.redirectTo({
 					url: '/pages/admin/index/index'

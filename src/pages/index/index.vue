@@ -63,7 +63,8 @@
 			},
 			change(e) {
 				// this.selectedIndexs.length = 0
-				this.getList(e.current)
+				this.pageCurrent = e.current;
+				this.getList()
 			},
 			viewDetail(id) {
 				uni.navigateTo({
