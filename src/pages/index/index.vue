@@ -33,10 +33,14 @@
 				total: 0,
 				loading: false,
 				articleCategory:null,
+				keyword:'',
+				category:''
 			}
 		},
 		onLoad(options) {
 			console.log(options)
+			this.keyword=options?.keyword||'';
+			this.category=options?.category||'';
 			this.getList(options?.keyword||'',options?.category||'');
 		},
 		onShow(){
@@ -64,7 +68,7 @@
 			change(e) {
 				// this.selectedIndexs.length = 0
 				this.pageCurrent = e.current;
-				this.getList()
+				this.getList(this.keyword,this.category)
 			},
 			viewDetail(id) {
 				uni.navigateTo({
