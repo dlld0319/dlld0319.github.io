@@ -110,6 +110,7 @@
 			font-size: 18px;
 			font-weight: 400;
 			color: #878787;
+			padding: 0 20px;
 		}
 	
 		.box-time {

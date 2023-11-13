@@ -243,19 +243,25 @@
 
 	.myInfo {
 		display: block;
-		width: 150px;
+		min-width: 120px;
+		padding-left: 8px;
 
 		.info-title {
 			display: block;
 			font-weight: 600;
 			font-size: 18px;
+			margin-bottom: 10px;
 		}
 
 		.info-detail {
 			display: block;
 			font-size: 15px;
 			font-weight: 500;
+			padding: 5px;
 			color: #878787;
+			background: white;
+			border-radius: 5px;
+			line-height: 28px;
 		}
 	}
 
