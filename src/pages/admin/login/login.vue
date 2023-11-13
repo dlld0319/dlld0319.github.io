@@ -16,9 +16,9 @@
 				<view class="login" @tap="login()">
 					登录
 				</view>
-				<view class="register" @tap="goRegister()">
+				<!-- <view class="register" @tap="goRegister()">
 					注册
-				</view>
+				</view> -->
 			</view>
 		</view>
 	</view>
