@@ -41,6 +41,8 @@
 		padding-left: 20px;
 		padding-right: 20px;
 		background: #f5f5dc70;
+		margin: 5px 10px;
+
 		.title {
 			font-size: 30px;
 			font-weight: 500;
@@ -50,7 +52,7 @@
 		.html {
 			margin-top: 40px;
 			background-color: antiquewhite;
-			    padding: 20px;
+			padding: 20px;
 		}
 	}
 </style>
