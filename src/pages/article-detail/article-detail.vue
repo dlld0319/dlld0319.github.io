@@ -53,6 +53,8 @@
 			margin-top: 40px;
 			background-color: antiquewhite;
 			padding: 20px;
+			user-select: text;
+			-webkit-user-select: text;
 		}
 	}
 </style>
