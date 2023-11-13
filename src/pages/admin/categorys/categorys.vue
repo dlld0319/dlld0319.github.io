@@ -15,7 +15,7 @@
 									<uni-th width="204" align="center">操作</uni-th>
 								</uni-tr>
 								<uni-tr v-for="(item, index) in tableData" :key="index">
-									<uni-td>{{ item.createdtime }}</uni-td>
+									<uni-td><uni-dateformat :date="item.createdtime" format="yyyy-MM-dd hh:mm"></uni-dateformat></uni-td>
 									<uni-td>
 										<view class="name">{{ item.name }}</view>
 									</uni-td>
