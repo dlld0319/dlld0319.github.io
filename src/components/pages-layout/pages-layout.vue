@@ -159,7 +159,7 @@
 	}
 
 	.layout {
-		background-color: #0a1e571c;
+		background: url(//img.cdn.aliyun.dcloud.net.cn/hbuilderx/website/en/hx_bg@1x.png) no-repeat;
 		height: 100vh;
 	}
 
