@@ -70,8 +70,8 @@
 	.login-pannel {
 		.info {
 			margin: auto;
-			height: 600rpx;
-			width: 400rpx;
+			height: 300px;
+			width: 200px;
 			margin-top: 220rpx;
 			padding-top: 100rpx;
 			background-color: #F7F7F7;
