@@ -17,10 +17,13 @@
 						jsonPath: "https://unpkg.com/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json",
 						"scale": .4
 					},
-					dialog: {
+					 "mobile": {
+					    show: false
+					  },
+					"dialog": {
 						// 开启对话框
-						enable: true,
-						script: {
+						"enable": true,
+						"script": {
 							// 每空闲 10 秒钟，显示一条一言
 							'every idle 10s': '$hitokoto$',
 							// 当触摸到星星图案
