@@ -77,12 +77,14 @@ const allCategories = async function(event, context) {
 	if (!pageIndex) {
 		return db.collection("db_categorys")
 			.where('isdeleted == "false"')
+			.orderBy('createdtime desc')
 			.get({
 				getCount: true
 			})
 	}
 	return db.collection("db_categorys")
 		.where('isdeleted == "false"')
+		.orderBy('createdtime desc')
 		.skip((pageIndex - 1) * pageSize) // 跳过前20条
 		.limit(pageSize) // 获取20条
 		.get({
@@ -174,6 +176,7 @@ const allArticles = async function(event, context) {
 	if (!pageIndex) {
 		return db.collection("db_articles")
 			.where('isdeleted == "false"')
+			 .orderBy('createdtime desc') 
 			.get({
 				getCount: true
 			})
@@ -181,6 +184,7 @@ const allArticles = async function(event, context) {
 	if(keyWords){
 		return db.collection("db_articles")
 			.where(`isdeleted == "false" && /${keyWords}/.test(title)`)
+			.orderBy('createdtime desc')
 			.skip((pageIndex - 1) * pageSize) // 跳过前20条
 			.limit(pageSize) // 获取20条
 			.get({
@@ -191,6 +195,7 @@ const allArticles = async function(event, context) {
 	if(category){
 		return db.collection("db_articles")
 			.where(`isdeleted == "false" && categoryids=="${category}"`)
+			.orderBy('createdtime desc')
 			.skip((pageIndex - 1) * pageSize) // 跳过前20条
 			.limit(pageSize) // 获取20条
 			.get({
@@ -199,6 +204,7 @@ const allArticles = async function(event, context) {
 	}
 	return db.collection("db_articles")
 		.where('isdeleted == "false"')
+		.orderBy('createdtime desc')
 		.skip((pageIndex - 1) * pageSize) // 跳过前20条
 		.limit(pageSize) // 获取20条
 		.get({
@@ -251,12 +257,14 @@ const alldailies = async function(event, context) {
 	if (!pageIndex) {
 		return db.collection("db_daily")
 			.where('isdeleted == "false"')
+			.orderBy('createdtime desc')
 			.get({
 				getCount: true
 			})
 	}
 	return db.collection("db_daily")
 		.where('isdeleted == "false"')
+		.orderBy('createdtime desc')
 		.skip((pageIndex - 1) * pageSize) // 跳过前20条
 		.limit(pageSize) // 获取20条
 		.get({
