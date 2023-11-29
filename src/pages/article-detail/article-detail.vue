@@ -1,15 +1,22 @@
 <template>
 	<pages-layout>
+		<view v-if="showBk==true" class="clossse" @tap="showBk=false;show2=false">
+			关闭评论
+		</view>
+		<view v-if="showBk" class="popup-content2">
+			<pl v-if="show2" :title='articleInfo.title'></pl></text>
+		</view>
 		<view class="page-detail" v-if="articleInfo">
 			<view class="title">
 				标题<br>
 				<text style="text-decoration: underline;">{{articleInfo.title}}</text>
 			</view>
+			<text style="text-decoration: underline;" @tap="showBk=true;show2=true">进行评论</text>
 			<view class="html" v-html="articleInfo.content.html">
 
 			</view>
-			<web-view class="bottom-send" :src="'../../static/utter.html?title='+articleInfo.title"></web-view>
 		</view>
+
 	</pages-layout>
 </template>
 
@@ -19,9 +26,12 @@
 		data() {
 			return {
 				articleInfo: null,
+				showBk: false,
+				show2: false
 			};
 		},
 		onLoad(options) {
+			const that = this;
 			this.initArticle(options.id)
 		},
 		methods: {
@@ -34,11 +44,31 @@
 </script>
 
 <style lang="scss" scoped>
-	.bottom-send{
-		height: 75vh;
-		margin-bottom: 100px;
+	.popup-content2 {
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		background-color: rgba(0,0,0,0.2);
 	}
+	.clossse{
+		display: inline-block;
+		width: 80px;
+		margin-top: -30px;
+		background-color: beige;
+	}
+	.click-if {
+		position: absolute;
+		top: 40%;
+		height: 40vh;
+
+		.bottom-send {
+			height: 100%;
+			width: 100%;
+		}
+	}
+
 	.page-detail {
+		position: relative;
 		min-height: 75vh;
 		background: white;
 		padding-top: 20px;
@@ -59,7 +89,6 @@
 			padding: 20px;
 			user-select: text;
 			-webkit-user-select: text;
-			margin-bottom: 400px;
 		}
 	}
 </style>
