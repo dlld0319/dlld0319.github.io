@@ -3,11 +3,12 @@
 		<view class="page-detail" v-if="articleInfo">
 			<view class="title">
 				标题<br>
-				<text style="    text-decoration: underline;">{{articleInfo.title}}</text>
+				<text style="text-decoration: underline;">{{articleInfo.title}}</text>
 			</view>
 			<view class="html" v-html="articleInfo.content.html">
 
 			</view>
+			<web-view class="bottom-send" :src="'../../static/utter.html?title='+articleInfo.title"></web-view>
 		</view>
 	</pages-layout>
 </template>
@@ -54,6 +55,7 @@
 			padding: 20px;
 			user-select: text;
 			-webkit-user-select: text;
+			margin-bottom: 400px;
 		}
 	}
 </style>
