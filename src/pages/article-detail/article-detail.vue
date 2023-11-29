@@ -11,7 +11,8 @@
 				标题<br>
 				<text style="text-decoration: underline;">{{articleInfo.title}}</text>
 			</view>
-			<text style="text-decoration: underline;" @tap="showBk=true;show2=true">进行评论</text>
+			<br>
+			<text style="text-decoration: underline;" @tap="showBk=true;show2=true">评论&查看评论</text>
 			<view class="html" v-html="articleInfo.content.html">
 
 			</view>
