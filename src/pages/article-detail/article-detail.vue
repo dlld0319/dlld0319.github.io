@@ -34,6 +34,9 @@
 </script>
 
 <style lang="scss" scoped>
+	.bottom-send{
+		height: 100vh;
+	}
 	.page-detail {
 		min-height: 75vh;
 		background: white;
