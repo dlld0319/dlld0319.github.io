@@ -35,7 +35,8 @@
 
 <style lang="scss" scoped>
 	.bottom-send{
-		height: 100vh;
+		height: 75vh;
+		margin-bottom: 100px;
 	}
 	.page-detail {
 		min-height: 75vh;
