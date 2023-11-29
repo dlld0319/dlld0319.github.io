@@ -1,6 +1,12 @@
 <template>
 
 	<view class="layout" style="overflow: auto;">
+		<view v-if="show1" class="show-liuyan" style="text-align: center;">
+			<view class="clossse" @tap="show1=false;show2=false">
+				关闭
+			</view>
+			<pl v-if="show2" title='留言'></pl></text>
+		</view>
 		<view class="gotoadmin" @tap="gotoadmain()">
 			去后台
 		</view>
@@ -38,6 +44,14 @@
 							<view class="info-detail" style="padding: 20px 0;text-align: center;">
 								<text style="font-weight: 600;cursor: pointer;    text-decoration: underline;"
 									@tap="gotomyself()">点击去查看</text>
+							</view>
+						</view>
+						<view class="myInfo" style="margin-top: 50px;">
+							<view class="info-title" @tap="show1=true;show2=true">
+								点击留言&查看留言
+							</view>
+							<view class="info-detail" style="padding: 20px 0;text-align: center;font-size: 13px;">
+								本功能是基于github issue网络不好无法使用~~
 							</view>
 						</view>
 					</view>
@@ -102,6 +116,8 @@
 				infoDetail: '本人擅长并乐意从事各种软件开发相关工作，现掌握nodejs相关、前端页面技术、postgre与sqlserver',
 				searchValue: '',
 				active: '',
+				show2:false,
+				show1:false,
 			}
 		},
 		created() {
@@ -304,5 +320,19 @@
 			cursor: pointer;
 			vertical-align: text-bottom;
 		}
+	}
+	
+	.show-liuyan{
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,0.2);
+	}
+	
+	.clossse{
+		display: inline-block;
+		width: 80px;
+		margin-top: -30px;
+		background-color: beige;
 	}
 </style>
