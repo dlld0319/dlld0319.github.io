@@ -24,7 +24,14 @@
 		</view>
 		<view class="content">
 			<uni-row class="demo-uni-row">
-				<uni-col :span="4" :xs="0">
+				<uni-col :span="2" :xs="0">
+				</uni-col>
+				<uni-col :span="16" :xs="24">
+					<view class="demo-uni-col dark">
+						<slot></slot>
+					</view>
+				</uni-col>
+				<uni-col :span="6" :xs="0">
 					<view class="demo-uni-col dark">
 						<view class="myInfo">
 							<view class="info-title">
@@ -55,14 +62,6 @@
 							</view>
 						</view>
 					</view>
-				</uni-col>
-				<uni-col :span="16" :xs="24">
-					<view class="demo-uni-col dark">
-						<slot></slot>
-					</view>
-				</uni-col>
-				<uni-col :span="4" :xs="0">
-					<view class="demo-uni-col dark"></view>
 				</uni-col>
 			</uni-row>
 		</view>
