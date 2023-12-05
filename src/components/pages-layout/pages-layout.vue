@@ -193,7 +193,7 @@
 	}
 
 	.top {
-		height: 150px;
+		height: 40px;
 		text-align: center;
 
 		.menus {
