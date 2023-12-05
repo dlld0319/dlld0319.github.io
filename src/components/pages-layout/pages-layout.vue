@@ -27,7 +27,8 @@
 						<slot></slot>
 					</view>
 				</uni-col>
-				<uni-col :span="7" :xs="0">
+				<uni-col :span="1" :xs="0"></uni-col>
+				<uni-col :span="6" :xs="0">
 					<view class="demo-uni-col dark">
 						<view class="myInfo">
 							<view class="info-title">
