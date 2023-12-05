@@ -25,13 +25,6 @@
 				<!-- #ifdef H5 -->
 				<!-- #endif -->
 
-				<picker class="navbar-right-item-gap" mode="selector" :range="themes" range-key="text" :value="themeIndex" @change="changeTheme">
-					<uni-icons type="color-filled" size="24" color="#999" />
-				</picker>
-				<picker class="navbar-right-item-gap" mode="selector" :range="langs" range-key="text" @change="changeLanguage" :value="langIndex">
-					<view class="admin-icons-lang" />
-				</picker>
-
 				<view class="" style="position: relative;">
 					<view v-show="userInfo.nickname || userInfo.username || userInfo.mobile || userInfo.email" class="navbar-user" @click="togglePopupMenu">
 						<view class="admin-icons-user user-icon" />
@@ -86,7 +79,9 @@
 		},
 		computed: {
 			userInfo () {
-				return {username:'111'}
+				const info= uni.getStorageSync('userinfo')
+				console.log(info)
+				return info||{username:'游客'}
 			},
 			themeIndex () {
 				let i = 0

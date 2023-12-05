@@ -1,6 +1,6 @@
 <template>
 	<scroll-view class="sidebar" scroll-y="true">
-		<uni-data-menu ref="menu" :value="currentMenu" :staticMenu="staticMenu" collection="opendb-admin-menus"
+		<uni-data-menu ref="menu" :value="currentMenu" :staticMenu="userInf()?staticMenu2:staticMenu" collection="opendb-admin-menus"
 			:page-size="500" :field="field" where="enable==true" orderby="sort asc" active-text-color="#409eff" @select="select">
 		</uni-data-menu>
 	</scroll-view>
@@ -18,22 +18,17 @@
 		},
 		computed: {
 			userInfo () {
-				return {username:'111'}
+				const info= uni.getStorageSync('userinfo')
+				console.log(info)
+				return info||{username:'游客'}
 			}
 		},
-
 		watch: {
-			// #ifdef H5
-			
-			// #endif
 			userInfo: {
-				// immediate: true,
+				immediate: true,
 				handler(newVal, oldVal) {
 					if (newVal) {
 						// 当用户信息发生变化后，重新加载左侧menu
-						this.$nextTick(function() {
-							this.$refs.menu.load()
-						})
 					}
 				}
 			}
@@ -69,6 +64,9 @@
 				}
 				return path.split('?')[0]
 			},
+			userInf(){
+				return uni.getStorageSync('userinfo')?false:true;
+			}
 		}
 	}
 </script>

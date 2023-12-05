@@ -1,5 +1,4 @@
 <template>
-
 	<view class="layout" style="overflow: auto;">
 		<view v-if="show1" class="show-liuyan" style="text-align: center;">
 			<view class="clossse" @tap="show1=false;show2=false">
@@ -98,19 +97,19 @@
 				menus: [{
 					name: '主页',
 					url: '',
-					children: [{
-							name: '文章',
-							url: '/pages/index/index'
-						},
-						{
-							name: '分类',
-							url: '/pages/categorys/categorys'
-						},
-						{
-							name: '说说',
-							url: '/pages/saysomthing/saysomthing'
-						}
-					]
+					// children: [{
+					// 		name: '文章',
+					// 		url: '/pages/index/index'
+					// 	},
+					// 	{
+					// 		name: '分类',
+					// 		url: '/pages/categorys/categorys'
+					// 	},
+					// 	{
+					// 		name: '说说',
+					// 		url: '/pages/saysomthing/saysomthing'
+					// 	}
+					// ]
 				}],
 				infoDetail: '本人擅长并乐意从事各种软件开发相关工作，现掌握nodejs相关、前端页面技术、postgre与sqlserver',
 				searchValue: '',

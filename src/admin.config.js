@@ -42,23 +42,30 @@ export default {
 		// 配置静态菜单列表（放置在用户被授权的菜单列表下边）
 		staticMenu: [{
 			menu_id: "demo",
-			text: '静态功能演示',
+			text: '页面',
 			icon: 'admin-icons-kaifashili',
 			url: "",
 			children: [{
-				menu_id: "icons",
-				text: '图标',
-				icon: 'admin-icons-icon',
-				value: '/pages/demo/icons/icons',
-			}, {
-				menu_id: "table",
-				text: '表格',
-				icon: 'admin-icons-table',
-				value: '/pages/demo/table/table',
-			}]
+					menu_id: "icons",
+					text: '文章',
+					icon: 'admin-icons-icon',
+					value: '/pages/index/index',
+				}, {
+					menu_id: "table",
+					text: '分类',
+					icon: 'admin-icons-table',
+					value: '/pages/categorys/categorys'
+				},
+				{
+					menu_id: "icons",
+					text: '说说',
+					icon: 'admin-icons-icon',
+					value: '/pages/saysomthing/saysomthing',
+				}
+			]
 		}, {
 			menu_id: "admim-doc-pulgin",
-			text: '文档与插件',
+			text: '管理员',
 			icon: 'admin-icons-eco',
 			url: "",
 			children: [{
@@ -77,9 +84,33 @@ export default {
 				text: '说说',
 				value: '/pages/admin/daily/daily'
 			}]
+		}],
+		staticMenu2: [{
+			menu_id: "demo",
+			text: '功能',
+			icon: 'admin-icons-kaifashili',
+			url: "",
+			children: [{
+					menu_id: "icons",
+					text: '文章',
+					icon: 'admin-icons-icon',
+					value: '/pages/index/index',
+				}, {
+					menu_id: "table",
+					text: '分类',
+					icon: 'admin-icons-table',
+					value: '/pages/categorys/categorys'
+				},
+				{
+					menu_id: "icons",
+					text: '说说',
+					icon: 'admin-icons-icon',
+					value: '/pages/saysomthing/saysomthing',
+				}
+			]
 		}]
 	},
 	uniStat: {
-		
+
 	}
 }
