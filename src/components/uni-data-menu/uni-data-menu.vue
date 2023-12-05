@@ -36,7 +36,7 @@
 			// 是否只保持一个子菜单的展开
 			uniqueOpened: {
 				type: Boolean,
-				default: false
+				default: true
 			},
 			staticMenu: {
 				type: Array,

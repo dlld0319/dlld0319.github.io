@@ -14,7 +14,7 @@
 			</view>
 			<view class="menus" @tap="openSearch()">
 				<view class="menu ">
-					<uni-icons type="search" size="28"></uni-icons>
+					<uni-icons type="search" size="28"></uni-icons>搜索
 				</view>
 			</view>
 		</view>
@@ -27,8 +27,7 @@
 						<slot></slot>
 					</view>
 				</uni-col>
-				<uni-col :span="1" :xs="0"></uni-col>
-				<uni-col :span="6" :xs="0">
+				<uni-col :span="7" :xs="0" style="padding-left: 20x;">
 					<view class="demo-uni-col dark">
 						<view class="myInfo">
 							<view class="info-title">
@@ -40,7 +39,7 @@
 									@tap="setClipboard()">欢迎使用邮箱联系,点击复制</text>
 							</view>
 						</view>
-						
+
 						<view class="myInfo" style="margin-top: 50px;">
 							<view class="info-title">
 								个人简历
@@ -51,7 +50,7 @@
 							</view>
 						</view>
 						<view class="myInfo" style="margin-top: 50px;">
-							<view class="info-title" @tap="show1=true;show2=true">
+							<view class="info-title" style=" text-decoration: underline;cursor: pointer;" @tap="show1=true;show2=true">
 								点击留言&查看留言
 							</view>
 							<view class="info-detail" style="padding: 20px 0;text-align: center;font-size: 13px;">
@@ -112,8 +111,8 @@
 				infoDetail: '本人擅长并乐意从事各种软件开发相关工作，现掌握nodejs相关、前端页面技术、postgre与sqlserver',
 				searchValue: '',
 				active: '',
-				show2:false,
-				show1:false,
+				show2: false,
+				show1: false,
 			}
 		},
 		created() {
@@ -167,7 +166,7 @@
 					success() {}
 				})
 			},
-			gotomyself(){
+			gotomyself() {
 				uni.navigateTo({
 					url: '/pages/article-detail/article-detail?id=' + '655204caa7c4329ea56c7838'
 				})
@@ -192,7 +191,7 @@
 
 	.top {
 		height: 60px;
-		text-align: center;
+		text-align: left;
 
 		.menus {
 			padding-top: 40px;
@@ -203,6 +202,7 @@
 				font-size: 20px;
 				line-height: 30px;
 				cursor: pointer;
+				display: flex;
 			}
 
 			.active {
@@ -272,12 +272,14 @@
 		display: block;
 		min-width: 120px;
 		padding-left: 8px;
+		border: 1px solid #7978782e;
 
 		.info-title {
 			display: block;
 			font-weight: 600;
 			font-size: 18px;
 			margin-bottom: 10px;
+			background: whitesmoke;
 		}
 
 		.info-detail {
@@ -317,15 +319,15 @@
 			vertical-align: text-bottom;
 		}
 	}
-	
-	.show-liuyan{
-	position: fixed;
-	height: 100%;
-	width: 100%;
-	background-color: rgba(0,0,0,0.2);
+
+	.show-liuyan {
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		background-color: rgba(0, 0, 0, 0.2);
 	}
-	
-	.clossse{
+
+	.clossse {
 		display: inline-block;
 		width: 80px;
 		margin-top: -30px;
