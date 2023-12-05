@@ -12,7 +12,7 @@
 				<text style="text-decoration: underline;">{{articleInfo.title}}</text>
 			</view>
 			<br>
-			<text style="text-decoration: underline;" @tap="showBk=true;show2=true">评论&查看评论</text>
+			<text style="text-decoration: underline;cursor: pointer;" @tap="showBk=true;show2=true">评论&查看评论</text>
 			<view class="html" v-html="articleInfo.content.html">
 
 			</view>
@@ -56,6 +56,7 @@
 		width: 80px;
 		margin-top: -30px;
 		background-color: beige;
+		
 	}
 	.click-if {
 		position: absolute;
@@ -75,7 +76,7 @@
 		padding-top: 20px;
 		padding-left: 20px;
 		padding-right: 20px;
-		margin: 5px 10px;
+		margin:  10px;
 		border: 1px solid darkgray;
 
 		.title {
