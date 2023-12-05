@@ -7,10 +7,6 @@
 </template>
 
 <script>
-	import {
-		mapState,
-		mapActions
-	} from 'vuex'
 	import config from '@/admin.config.js'
 	export default {
 		data() {
@@ -21,7 +17,6 @@
 			}
 		},
 		computed: {
-			...mapState('app', ['inited', 'navMenu', 'active']),
 			userInfo () {
 				return {username:'111'}
 			}
@@ -29,15 +24,7 @@
 
 		watch: {
 			// #ifdef H5
-			$route: {
-				immediate: true,
-				handler(newRoute, oldRoute) {
-					const path = newRoute.fullPath
-					if (path) {
-						this.currentMenu = this.splitFullPath(path)
-					}
-				}
-			},
+			
 			// #endif
 			userInfo: {
 				// immediate: true,
@@ -52,16 +39,12 @@
 			}
 		},
 		methods: {
-			...mapActions({
-				setRoutes: 'app/setRoutes'
-			}),
-			select(e, routes) {
+			select(e) {
 				let url = e.value
 				if (!url) {
 					url = this.active
 				}
 				this.clickMenuItem(url)
-				this.setRoutes(routes)
 				// #ifdef H5
 				// #ifdef VUE3
 				uni.hideLeftWindow()
@@ -69,22 +52,6 @@
 				// #endif
 			},
 			clickMenuItem(url) {
-				// #ifdef H5
-				if (url.indexOf('http') === 0) {
-					return window.open(url)
-				}
-				// #endif
-
-				// url 开头可用有 / ，也可没有
-				if (url[0] !== '/' && url.indexOf('http') !== 0) {
-					url = '/' + url
-				}
-				// #ifndef H5
-				if (url === "/") {
-					url = config.index.url;
-				}
-				// #endif
-				// TODO 后续要调整
 				uni.redirectTo({
 					url: url,
 					fail: () => {

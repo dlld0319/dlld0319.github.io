@@ -64,18 +64,18 @@ export default {
 			children: [{
 				menu_id: "admin-doc",
 				icon: 'admin-icons-doc',
-				text: 'uni-admin 框架文档',
-				value: 'https://uniapp.dcloud.net.cn/uniCloud/admin'
+				text: '文章',
+				value: '/pages/admin/articles/articles'
 			}, {
 				menu_id: "stat-doc",
 				icon: 'admin-icons-help',
-				text: 'uni 统计教程',
-				value: 'https://uniapp.dcloud.net.cn/uni-stat-v2.html'
+				text: '分类',
+				value: '/pages/admin/categorys/categorys'
 			}, {
 				menu_id: "admin-pulgin",
 				icon: 'admin-icons-pulgin',
-				text: 'uni-admin 插件',
-				value: 'https://ext.dcloud.net.cn/?cat1=7&cat2=74'
+				text: '说说',
+				value: '/pages/admin/daily/daily'
 			}]
 		}]
 	},

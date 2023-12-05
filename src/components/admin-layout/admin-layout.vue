@@ -104,7 +104,6 @@
 	.containt{
 		height: calc(100vh - 160rpx);
 		display: flex;
-		padding-top: 20rpx;
 		.menus{
 			flex: 1;
 			min-width: 100px;

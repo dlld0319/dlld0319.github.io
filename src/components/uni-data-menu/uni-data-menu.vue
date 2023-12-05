@@ -10,9 +10,6 @@
 
 <script>
 	import {
-		mapActions
-	} from 'vuex'
-	import {
 		buildMenus
 	} from './util.js'
 	export default {
@@ -71,18 +68,6 @@
 				}
 			},
 			// #endif
-			$route: {
-				immediate: false,
-				handler(val, old) {
-					if (val.fullPath !== old.fullPath) {
-						this.famliy = []
-						const menu = this.menus.find(m => m.value === val.path)
-						const menu_id = menu && menu.menu_id
-						this.getMenuAncestor(menu_id, this.menus)
-						this.setRoutes && this.setRoutes(this.famliy)
-					}
-				}
-			}
 		},
 		created() {
 			if (this.hasLocalData(this.localdata)) return
@@ -96,9 +81,6 @@
 		// 	}
 		// },
 		methods: {
-			...mapActions({
-				setRoutes: 'app/setRoutes'
-			}),
 			getUserMenu(menuList) {
 				const {
 					permission,
@@ -126,7 +108,6 @@
 				return buildMenus(menuList)
 			},
 			onSelect(menu) {
-
 				this.famliy = []
 				this.getMenuAncestor(menu.menu_id, this.menus)
 				this.emit(menu)

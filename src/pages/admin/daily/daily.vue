@@ -131,7 +131,6 @@
 
 <style lang="scss" scoped>
 .containt {
-		padding-top: 100rpx;
 
 		.create {
 			padding: 10rpx 20rpx;

@@ -59,9 +59,7 @@
 </template>
 
 <script>
-
 	import config from '@/admin.config.js'
-
 	export default {
 		components: {
 			
