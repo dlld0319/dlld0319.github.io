@@ -118,5 +118,20 @@
 		"backgroundColor": "#F8F8F8",
 		"navigationStyle": "custom"
 	},
+	"topWindow": {
+			"path": "pages/windows/topWindow",
+			"style": {
+				"height": "60px"
+			},
+			"matchMedia": {
+				"minWidth": 0
+			}
+		},
+		"leftWindow": {
+			"path": "pages/windows/leftWindow",
+			"style": {
+				"width": "240px"
+			}
+		},
 	"uniIdRouter": {}
 }

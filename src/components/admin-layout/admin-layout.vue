@@ -1,24 +1,6 @@
 <template>
 	<view  style="overflow: auto;">
-		<view class="top">
-			<view class="usermenu">
-				<text>{{userName}}</text>
-				<image class="head" src="../../static/logo.png" mode="" @tap="gotouser()"></image>
-			</view>
-		</view>
 		<view class="containt">
-			<view class="menus">
-				<view v-for="(items,indexs) in menus" :key="indexs">
-					<view class="first-menu" @tap="goUrl(items.url)">
-						{{items.name}}
-					</view>
-					<view class="second-menu" v-for="(item,index) in items.children" :key="index">
-						<view :class="item.url==url?'active':''"  @tap="goUrl(item.url)">
-							{{item.name}}
-						</view>
-					</view>
-				</view>
-			</view>
 			<view class="pages">
 				<slot></slot>
 			</view>

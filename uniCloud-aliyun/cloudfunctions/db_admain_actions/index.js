@@ -325,7 +325,9 @@ const updateDaily = async function(event, context) {
 			content: content
 		})
 }
-
+process
+encrypt 
+Crypto
 const getOneDaily=async function(event, context){
 	var {id}=body;
 	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
