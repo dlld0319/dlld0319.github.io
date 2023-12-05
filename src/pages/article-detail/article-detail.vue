@@ -75,8 +75,8 @@
 		padding-top: 20px;
 		padding-left: 20px;
 		padding-right: 20px;
-		background: #f5f5dc70;
 		margin: 5px 10px;
+		border: 1px solid darkgray;
 
 		.title {
 			font-size: 30px;
@@ -86,10 +86,10 @@
 
 		.html {
 			margin-top: 40px;
-			background-color: antiquewhite;
 			padding: 20px;
 			user-select: text;
 			-webkit-user-select: text;
+			color: dimgrey;
 		}
 	}
 </style>
