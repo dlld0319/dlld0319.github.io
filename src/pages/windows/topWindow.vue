@@ -34,9 +34,8 @@
 					<view class="uni-mask" @click="togglePopupMenu" />
 					<view class="navbar-menu">
 						<template v-if="userInfo.nickname || userInfo.username || userInfo.mobile || userInfo.email">
-							<view class="menu-item hover-highlight" @click="changePassword">
-							</view>
-							<view class="menu-item hover-highlight">
+							<view class="menu-item hover-highlight" @click="gobk">
+								去后台
 							</view>
 						</template>
 						<view class="popup-menu__arrow"></view>
@@ -154,6 +153,11 @@
 				const index = typeof e === 'object' ? e.detail.value : e
 				const theme = this.themes[index].value || 'default'
 				if(this.theme !== theme) this.SET_THEME(theme)
+			},
+			gobk(){
+				uni.navigateTo({
+					url:'/pages/admin/index/index'
+				})
 			}
 		}
 	}
@@ -363,11 +367,11 @@
 		align-items: center;
 		justify-content: center;
 		position: absolute;
-		right: 0;
+		right: 50px;
 		/* #ifdef MP */
 		// right: 97px;
 		/* #endif */
-		top: 27px;
+		top: 0px;
 		/* #ifndef H5 */
 		// top: 85pxs: ;
 		/* #endif */

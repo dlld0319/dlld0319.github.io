@@ -6,9 +6,6 @@
 			</view>
 			<pl v-if="show2" title='留言'></pl></text>
 		</view>
-		<view class="gotoadmin" @tap="gotoadmain()">
-			去后台
-		</view>
 		<view class="top">
 			<view class="menus" v-for="(items,indexs) in menus[0].children" :key="indexs">
 				<view :class="active.includes(items.url)?'active menu':'menu'" @tap="go(items.url)">
