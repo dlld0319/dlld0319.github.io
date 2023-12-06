@@ -186,7 +186,7 @@
 	.layout {
 		// background: url(https://mp-fb19cbbf-7877-4ed9-b04c-6ee15f347da4.cdn.bspapp.com/images/background.png) no-repeat;
 		background-size: 100% 100%;
-		height: 100vh;
+		height: calc(100vh - 60px);
 	}
 
 	.top {

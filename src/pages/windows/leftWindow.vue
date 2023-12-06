@@ -47,7 +47,7 @@
 				// #endif
 			},
 			clickMenuItem(url) {
-				uni.redirectTo({
+				uni.reLaunch({
 					url: url,
 					fail: () => {
 						uni.showModal({

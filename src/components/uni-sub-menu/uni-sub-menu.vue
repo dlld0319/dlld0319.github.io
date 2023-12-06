@@ -58,6 +58,7 @@
 		},
 		created() {
 			this.init()
+			this.isOpen = true
 		},
 		destroyed() {
 			// 销毁页面后，将当前页面实例从数据中删除
