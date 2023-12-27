@@ -72,7 +72,7 @@
 				this.pingluns = result.data;
 			},
 			async submit() {
-				if(!(this.form.nicheng.trim()&& this.form.content.trim())){
+				if(!(this.form.nicheng?.trim()&& this.form.content?.trim())){
 					uni.showToast({
 						title:'请补全信息',
 						icon:'none'
