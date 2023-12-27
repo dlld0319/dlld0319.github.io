@@ -18,14 +18,18 @@
 			</view>
 		</view>
 		<view class="pinglun-part">
-			<view v-for="(item,index) in pingluns" :key="index">
-				<view class="detail">
-					{{item.content}}
+			<view class="total" style="font-weight: 600;">
+				共计{{pingluns.length}}条评论
+			</view>
+			<view class="box" v-for="(item,index) in pingluns" :key="index">
+				<view class="detail" v-html="item.content">
 				</view>
-				<view class="from">
-					{{item.nicheng}}
+				<view class="box-info">
+					<view class="from">
+						昵称：{{item.nicheng}}
+					</view>
+					<uni-dateformat :date="item.createdtime" format="发表时间:yyyy-MM-dd hh:mm"></uni-dateformat>
 				</view>
-				<uni-dateformat :date="item.createdtime" format="yyyy-MM-dd hh:mm"></uni-dateformat>
 			</view>
 		</view>
 		<view class="add-pinglun">
@@ -44,17 +48,17 @@
 				articleInfo: null,
 				showBk: false,
 				show2: false,
-				pingluns:null,
-				form:{
-					articleId:null,
-					nicheng:null,
+				pingluns: null,
+				form: {
+					articleId: null,
+					nicheng: null,
 					content: null
 				}
 			};
 		},
 		onLoad(options) {
 			const that = this;
-			this.form.articleId=options.id;
+			this.form.articleId = options.id;
 			this.initArticle(options.id);
 			this.initPinglun(options.id);
 		},
@@ -63,12 +67,24 @@
 				const result = await _.getOneArticle(id);
 				this.articleInfo = result.data[0];
 			},
-			async initPinglun(id){
-				const result =await _.getPinglun(id);
-				this.pingluns=result.data;
+			async initPinglun(id) {
+				const result = await _.getPinglun(id);
+				this.pingluns = result.data;
 			},
-			async submit(){
-				await _.addPinglun(this.form.articleId,this.form.nicheng,this.form.content)
+			async submit() {
+				if(!(this.form.nicheng.trim()&& this.form.content.trim())){
+					uni.showToast({
+						title:'请补全信息',
+						icon:'none'
+					});
+					return;
+				}
+				uni.showLoading({title:'发表中'})
+				await _.addPinglun(this.form.articleId, this.form.nicheng, this.form.content);
+				uni.showToast({
+					title:'发表成功'
+				});
+				this.initPinglun(this.form.articleId)
 			}
 		}
 	}
@@ -79,15 +95,17 @@
 		position: fixed;
 		height: 100%;
 		width: 100%;
-		background-color: rgba(0,0,0,0.2);
+		background-color: rgba(0, 0, 0, 0.2);
 	}
-	.clossse{
+
+	.clossse {
 		display: inline-block;
 		width: 80px;
 		margin-top: -30px;
 		background-color: beige;
-		
+
 	}
+
 	.click-if {
 		position: absolute;
 		top: 40%;
@@ -106,7 +124,7 @@
 		padding-top: 20px;
 		padding-left: 20px;
 		padding-right: 20px;
-		margin:  10px;
+		margin: 10px;
 		border: 1px solid darkgray;
 
 		.title {
@@ -123,8 +141,29 @@
 			color: dimgrey;
 		}
 	}
-	
-	.add-pinglun{
+
+	.pinglun-part {
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
+		padding: 20px;
+		background-color: #d3cfd65c;
+
+		.box {
+			margin-top: 20px;
+			padding-bottom: 5px;
+			.box-info {
+				display: flex;
+				justify-content: space-between;
+				margin-top: 10px;
+			}
+			border-bottom: 1px solid grey;
+		}
+	}
+
+	.add-pinglun {
+		padding: 30px;
 		padding-bottom: 100px;
+		background-color: #d3cfd65c;
+
 	}
 </style>

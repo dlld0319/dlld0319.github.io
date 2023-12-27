@@ -368,8 +368,10 @@ const getPinglun=async function(event, context){
 	});
 	const db = dbJQL;
 	return db.collection("db-pinglun").where({
-			articleId: id
+			articleId: id,
+			isdeleted : "false"
 		})
+		.orderBy('createdtime asc')
 		.get();
 }
 
