@@ -325,9 +325,6 @@ const updateDaily = async function(event, context) {
 			content: content
 		})
 }
-process
-encrypt 
-Crypto
 const getOneDaily=async function(event, context){
 	var {id}=body;
 	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
@@ -337,6 +334,41 @@ const getOneDaily=async function(event, context){
 	const db = dbJQL;
 	return db.collection("db_daily").where({
 			_id: id
+		})
+		.get();
+}
+/* 评论开始*/
+const addPinglun=async function(event, context){
+	var body = bodyToJson(event.body);
+	var {
+		articleId,
+		nicheng,
+		content
+	}=body;
+	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
+		event,
+		context
+	});
+	const db = dbJQL;
+	return db.collection("db-pinglun").add({
+		articleId:articleId,
+		nicheng:nicheng,
+		content: content,
+		isdeleted: 'false',
+		createdtime: +new Date()
+	})
+}
+
+const getPinglun=async function(event, context){
+	var body = bodyToJson(event.body);
+	var {id}=body;
+	const dbJQL = uniCloud.databaseForJQL({ // 获取JQL database引用，此处需要传入云函数的event和context，必传
+		event,
+		context
+	});
+	const db = dbJQL;
+	return db.collection("db-pinglun").where({
+			articleId: id
 		})
 		.get();
 }
@@ -392,6 +424,12 @@ exports.main = async (event, context) => {
 			break;
 		case 'getOneDaily':
 			result=await getOneDaily(event,context);
+			break;
+		case 'addPinglun':
+			result=await addPinglun(event,context);
+			break;
+		case 'getPinglun':
+			result=await getPinglun(event,context);
 			break;
 	}
 	return result;

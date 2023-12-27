@@ -120,6 +120,22 @@ const getOneDaily = async function(id) {
 	return await http.post('getOneDaily', body);
 }
 
+const getPinglun = async function(id) {
+	const body = {
+		id
+	}
+	return await http.post('getPinglun', body);
+}
+
+const addPinglun = async function(articleId,nicheng,content) {
+	const body = {
+		articleId:articleId,
+		nicheng:nicheng,
+		content: content
+	}
+	return await http.post('addPinglun', body);
+}
+
 export {
 	login,
 	createUser,
@@ -137,4 +153,6 @@ export {
 	updateDaily,
 	deleteDaily,
 	getOneDaily,
+	getPinglun,
+	addPinglun
 }

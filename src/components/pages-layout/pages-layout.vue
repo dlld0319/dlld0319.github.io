@@ -49,23 +49,6 @@
 									@tap="gotomyself()">点击去查看</text>
 							</view>
 						</view>
-						<view class="myInfo" style="margin-top: 50px;">
-							<view class="info-title">
-								Voce Chat
-							</view>
-							<view class="info-detail" style="padding: 20px 0;text-align: center;">
-								<text style="font-weight: 600;cursor: pointer;    text-decoration: underline;"
-									@tap="gotoChat()">非Docker 环境搭建，免费可支持20人使用</text>
-							</view>
-						</view>
-						<view class="myInfo" style="margin-top: 50px;">
-							<view class="info-title" style=" text-decoration: underline;cursor: pointer;" @tap="show1=true;show2=true">
-								点击留言&查看留言
-							</view>
-							<view class="info-detail" style="padding: 20px 0;text-align: center;font-size: 13px;">
-								本功能是基于github issue网络不好无法使用~~
-							</view>
-						</view>
 					</view>
 				</uni-col>
 			</uni-row>

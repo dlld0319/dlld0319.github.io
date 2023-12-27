@@ -17,7 +17,22 @@
 
 			</view>
 		</view>
-
+		<view class="pinglun-part">
+			<view v-for="(item,index) in pingluns" :key="index">
+				<view class="detail">
+					{{item.content}}
+				</view>
+				<view class="from">
+					{{item.nicheng}}
+				</view>
+				<uni-dateformat :date="item.createdtime" format="yyyy-MM-dd hh:mm"></uni-dateformat>
+			</view>
+		</view>
+		<view class="add-pinglun">
+			<uni-easyinput type="textarea" placeholder="请输入内容" v-model="form.content" />
+			<uni-easyinput type="text" placeholder="请输入昵称" v-model="form.nicheng" />
+			<button @tap="submit()">提交</button>
+		</view>
 	</pages-layout>
 </template>
 
@@ -28,17 +43,32 @@
 			return {
 				articleInfo: null,
 				showBk: false,
-				show2: false
+				show2: false,
+				pingluns:null,
+				form:{
+					articleId:null,
+					nicheng:null,
+					content: null
+				}
 			};
 		},
 		onLoad(options) {
 			const that = this;
-			this.initArticle(options.id)
+			this.form.articleId=options.id;
+			this.initArticle(options.id);
+			this.initPinglun(options.id);
 		},
 		methods: {
 			async initArticle(id) {
 				const result = await _.getOneArticle(id);
 				this.articleInfo = result.data[0];
+			},
+			async initPinglun(id){
+				const result =await _.getPinglun(id);
+				this.pingluns=result.data;
+			},
+			async submit(){
+				await _.addPinglun(this.form.articleId,this.form.nicheng,this.form.content)
 			}
 		}
 	}
@@ -92,5 +122,9 @@
 			-webkit-user-select: text;
 			color: dimgrey;
 		}
+	}
+	
+	.add-pinglun{
+		padding-bottom: 100px;
 	}
 </style>
