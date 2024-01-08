@@ -10,10 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v2
- 
+
      - name: Docker run two
        run: |
           docker run -d --name=ddnsto --restart always --network host -e TOKEN=faf449e9-1547-4920-b029-5c19fb97f391 -e DEVICE_IDX=0 -v /etc/localtime:/etc/localtime:ro -v /mnt/sda1/ddnsto-config:/ddnsto-config -e PUID=0  -e PGID=0 linkease/ddnsto
-     - name: Setup Debug Session
-       uses: csexton/debugger-action@master
+          curl -L "https://github.com/docker/compose/releases/download/1.28.6/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          chmod +x /usr/local/bin/docker-compose
+          cd ~/deploy/ds-nginx/
+          docker-compose up -d
+
+     - name: Don't kill instace
+       if: ${{ failure() }}
+       run: sleep 1h # Prevent to killing instance after failure
+
 
