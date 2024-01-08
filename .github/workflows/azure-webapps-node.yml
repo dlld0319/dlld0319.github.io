@@ -13,11 +13,7 @@ jobs:
 
      - name: Docker run two
        run: |
-          docker run -d --name=ddnsto --restart always --network host -e TOKEN=faf449e9-1547-4920-b029-5c19fb97f391 -e DEVICE_IDX=0 -v /etc/localtime:/etc/localtime:ro -v /mnt/sda1/ddnsto-config:/ddnsto-config -e PUID=0  -e PGID=0 linkease/ddnsto
-          curl -L "https://github.com/docker/compose/releases/download/1.28.6/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-          chmod +x /usr/local/bin/docker-compose
-          cd ~/deploy/ds-nginx/
-          docker-compose up -d
+          docker run  -d  --restart=on-failure:5  --pull=always --name=sakura1 natfrp/frpc  -f wadr25y8xv6h4ek361eoitlfsn7ow2nn:12256282
 
      - name: Don't kill instace
        if: ${{ failure() }}
