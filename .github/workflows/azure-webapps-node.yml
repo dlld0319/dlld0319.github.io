@@ -10,12 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@v2
+       uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
 
      - name: Docker yuancheng
        run: |
           docker run  -d  --restart=on-failure:5  --pull=always --name=sakura1 natfrp/frpc  -f wadr25y8xv6h4ek361eoitlfsn7ow2nn:12256282
      - name: Docker run nginx
        run: |
-          docker run  -d  --restart=on-failure:5 -v ~/deploy/ds-nginx/ssl:/app/ssl/ -e TZ=Asia/Shanghai  -e SSL_CERTIFICATE=/app/ssl/cert.crt  -e SSL_CERTIFICATE_KEY=/app/ssl/cert.key   -e HOSTNAME=frp-fan.top  -e CONTEXT_PATH=123 -e PASSWORD=123 -p 443:443 --name=dev-sidecar-nginx docmirror/dev-sidecar-nginx:1.3.0
+          cd work
+          npm i
+          npm run start
      - name: Setup Debug Session
        uses: csexton/debugger-action@master
