@@ -1,0 +1,17 @@
+
+name: debugger-action
+on: 
+  watch:
+    types: started
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v2
+ 
+     - name: Docker run two
+       run: |
+          docker run -d --name=ddnsto --restart always --network host -e TOKEN=faf449e9-1547-4920-b029-5c19fb97f391 -e DEVICE_IDX=0 -v /etc/localtime:/etc/localtime:ro -v /mnt/sda1/ddnsto-config:/ddnsto-config -e PUID=0  -e PGID=0 linkease/ddnsto
+     - name: Setup Debug Session
+       uses: csexton/debugger-action@master
+
