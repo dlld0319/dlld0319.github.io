@@ -1,7 +1,7 @@
 
 const express = require('express');
 const app = express();
-const port = 443;    //端口号
+const port = 3000;    //端口号
 const request = require('request');
  
 //监听请求 *代表所有的请求路径。
