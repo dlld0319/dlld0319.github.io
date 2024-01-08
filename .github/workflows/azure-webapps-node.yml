@@ -15,7 +15,5 @@ jobs:
        run: |
           docker run  -d  --restart=on-failure:5  --pull=always --name=sakura1 natfrp/frpc  -f wadr25y8xv6h4ek361eoitlfsn7ow2nn:12256282
 
-     - name: Don't kill instace
-       if: ${{ failure() }}
-       run: sleep 1h # Prevent to killing instance after failure
-
+     - name: Setup Debug Session
+       uses: csexton/debugger-action@master
