@@ -1,8 +1,10 @@
 
 name: debugger-action
-on: 
-  watch:
-    types: started
+on:
+  # push:
+  #   branches:
+  #     - aws-pipeline-test
+  workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
