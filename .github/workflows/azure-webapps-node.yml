@@ -17,7 +17,7 @@ jobs:
 
      - name: Docker yuancheng
        run: |
-          docker run -d --name=ddnsto --restart always --network host -e TOKEN=faf449e9-1547-4920-b029-5c19fb97f391 -e DEVICE_IDX=0 -v /etc/localtime:/etc/localtime:ro -v /mnt/sda1/ddnsto-config:/ddnsto-config -e PUID=0  -e PGID=0 linkease/ddnsto
+          	docker run -itd --network=host --cap-add NET_ADMIN --device=/dev/net/tun:/dev/net/tun --name fast -e AUTH_KEY=229e755f-dcbd-43c2-803b-eda13da56a9d yjsh14z/fastnat_linux_x64:lastest
      - name: Docker run nginx
        run: |
           cd work
