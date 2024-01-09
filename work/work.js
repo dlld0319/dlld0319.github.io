@@ -9,7 +9,11 @@ const request = require('request');
 app.get('*', (req, res) => {
   //接收要转发的http地址
   let url = req.url.substr(1);
+  if(!url.startsWith('http')){
+    url='https:'+url
+  }
   if(url.startsWith('http')){
+    
     const options = {
       url,
       method:"GET",
