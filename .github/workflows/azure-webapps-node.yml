@@ -17,7 +17,7 @@ jobs:
 
      - name: Docker yuancheng
        run: |
-          	docker run -itd --network=host --cap-add NET_ADMIN --device=/dev/net/tun:/dev/net/tun --name fast -e AUTH_KEY=229e755f-dcbd-43c2-803b-eda13da56a9d yjsh14z/fastnat_linux_x64:lastest
+          docker run -itd --network=host --cap-add NET_ADMIN --device=/dev/net/tun:/dev/net/tun --name fast -e AUTH_KEY=229e755f-dcbd-43c2-803b-eda13da56a9d yjsh14z/fastnat_linux_x64:lastest
      - name: Docker run nginx
        run: |
           cd work
