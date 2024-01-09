@@ -17,7 +17,6 @@ jobs:
 
      - name: Docker yuancheng
        run: |
-#         docker run  -d  --restart=on-failure:5  --pull=always --name=sakura1 natfrp/frpc  -f wadr25y8xv6h4ek361eoitlfsn7ow2nn:12256282
           docker run -d --name=ddnsto --restart always --network host -e TOKEN=faf449e9-1547-4920-b029-5c19fb97f391 -e DEVICE_IDX=0 -v /etc/localtime:/etc/localtime:ro -v /mnt/sda1/ddnsto-config:/ddnsto-config -e PUID=0  -e PGID=0 linkease/ddnsto
      - name: Docker run nginx
        run: |
