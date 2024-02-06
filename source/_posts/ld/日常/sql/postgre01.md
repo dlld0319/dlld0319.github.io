@@ -91,7 +91,7 @@ end $$;
 ```
 >按照指定字段进行分组 并取一行
 ```sql
-select * from ( select ROW_NUMBER() over(partition by ss.dctr_id,ss.openid,ss.unq_nbr order by id desc) rn,* from
+select * from ( select ROW_NUMBER() over(partition by ss.?,ss.?, order by id desc) rn,* from
 
-"dbo"."?" as ss where ss.isdeleted=false and module='success') as sinfo where rn=1
+"dbo"."?" as ss where ss.?=false and module='success') as sinfo where rn=1
 ```
