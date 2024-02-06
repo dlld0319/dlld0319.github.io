@@ -95,3 +95,12 @@ select * from ( select ROW_NUMBER() over(partition by ss.?,ss.?, order by id des
 
 "dbo"."?" as ss where ss.?=false and module='success') as sinfo where rn=1
 ```
+>删除表统计情报优化表性能
+```sql
+analyze tablename
+```
+
+>表增加索引 提高脚本执行效率
+```sql
+create index i_tablename_columnname on tablename(columnname);
+```
