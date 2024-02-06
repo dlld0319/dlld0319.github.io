@@ -572,7 +572,7 @@ utterances:
   # Github username.
   owner: dlld0319
   # Github repository.
-  repo: dlld0319/dlld0319.github.io
+  repo: dlld0319.github.io
   # Choose the mapping between blog posts and GitHub issues.
   # Optional values: pathname | url | title | og:title
   mapping: title
