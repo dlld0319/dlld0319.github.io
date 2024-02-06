@@ -472,17 +472,17 @@ stick_top:
 # Gittalk
 # See: https://github.com/gitalk/gitalk/
 gitalk:
-  enable: false
+  enable: true
   # Github username.
-  owner:
+  owner: dlld0319
   # Github repository.
-  repo:
+  repo: dlld0319.github.io
   # Github Application Client ID.
-  client_id:
+  client_id: 89467e6394dce511d93e
   # Github Application Client Secret.
-  client_secret:
+  client_secret: ba11485bfc0e3bd0bfd296883004461f6bd5e892
   # GitHub repo owner and collaborators, only these guys can initialize github issues.
-  admin:
+  admin: dlld0319
   # Facebook-like distraction free mode.
   distraction_free_mode: false
   # Gitalk's display language depends on user's browser or system environment.
