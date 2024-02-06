@@ -472,7 +472,7 @@ stick_top:
 # Gittalk
 # See: https://github.com/gitalk/gitalk/
 gitalk:
-  enable: true
+  enable: false
   # Github username.
   owner: dlld0319
   # Github repository.
@@ -568,11 +568,11 @@ disqus:
 # Utterances
 # See: https://utteranc.es/
 utterances:
-  enable: false
+  enable: true
   # Github username.
-  owner:
+  owner: dlld0319
   # Github repository.
-  repo:
+  repo: dlld0319/dlld0319.github.io
   # Choose the mapping between blog posts and GitHub issues.
   # Optional values: pathname | url | title | og:title
   mapping: title
