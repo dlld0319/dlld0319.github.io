@@ -482,7 +482,7 @@ gitalk:
   # Github Application Client Secret.
   client_secret: ba11485bfc0e3bd0bfd296883004461f6bd5e892
   # GitHub repo owner and collaborators, only these guys can initialize github issues.
-  admin: dlld0319
+  admin: ['dlld0319']
   # Facebook-like distraction free mode.
   distraction_free_mode: false
   # Gitalk's display language depends on user's browser or system environment.
