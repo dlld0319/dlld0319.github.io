@@ -135,7 +135,7 @@ header:
     # Whether to show on the article page.
     post: true
   # If you set a percentage, it will be calculated based on the height of screen (Supports all CSS units)
-  height: 10%
+  height: 20%
   # Background image of site header.
   bg_image:
     enable: true
@@ -647,7 +647,7 @@ baidu_analytics: https://tongji.baidu.com/
 # Algolia Search
 # Dependency: https://github.com/algolia/instantsearch.js/
 algolia_search:
-  enable: false
+  enable: true
   hits:
     # Number of search results displayed per page.
     per_page: 10
