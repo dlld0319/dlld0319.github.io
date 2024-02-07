@@ -97,12 +97,9 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/ 
 ## Themes: https://hexo.io/themes/
-theme: Miracle
+theme: stun
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  # repo: https://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@github.com/dlld0319/dlld0319.github.io.git # https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
-  # branch: [page]
-  # message: [Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}]
