@@ -16,7 +16,7 @@ jobs:
       contents: read
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -27,8 +27,8 @@ jobs:
 
       - name: npm install, build
         run: |
-          npm install
-          npm run build
+          yarn install
+          yarn build
           cp config.html public/
 
       - name: Deploy
