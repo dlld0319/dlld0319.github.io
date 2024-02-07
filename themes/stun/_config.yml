@@ -638,7 +638,7 @@ google_analytics: https://analytics.google.com/
 
 # Baidu analytics ID
 # See: https://tongji.baidu.com/
-baidu_analytics: https://tongji.baidu.com/
+baidu_analytics: df6bca4dacbb312a4c2b6f5591fbb00f
 
 # ---------------------------------------------------------------
 # Search config
