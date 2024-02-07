@@ -1,12 +1,11 @@
 ---
 title: postgre01
-date: 2024-02-26 10:00:00
+date: 2024-02-06 10:00:00
 categories:
 - Sql
 excerpt: postgre01
 ---
-
->postgre 中经常使用的脚本
+> postgre 中经常使用的脚本
 
 ```sql
 行转列
@@ -18,7 +17,7 @@ string_agg(column_name , ',')
 
 ```
 
->鉴权
+> 鉴权
 
 ```sql
 
@@ -26,7 +25,7 @@ permission denied for sequence XXXX_control_no_seq
 
 ```
 
->重建索引
+> 重建索引
 
 ```sql
 DO 
@@ -64,7 +63,8 @@ $$
 ;
 ```
 
->循环插入数据
+> 循环插入数据
+
 ```sql
 do $$
 
@@ -89,18 +89,23 @@ OVERRIDING SYSTEM VALUE (select isreaded, isdeleted from dbo.？as tt order by i
 end $$;
 
 ```
->按照指定字段进行分组 并取一行
+
+> 按照指定字段进行分组 并取一行
+
 ```sql
 select * from ( select ROW_NUMBER() over(partition by ss.?,ss.?, order by id desc) rn,* from
 
 "dbo"."?" as ss where ss.?=false and module='success') as sinfo where rn=1
 ```
->删除表统计情报优化表性能
+
+> 删除表统计情报优化表性能
+
 ```sql
 analyze tablename
 ```
 
->表增加索引 提高脚本执行效率
+> 表增加索引 提高脚本执行效率
+
 ```sql
 create index i_tablename_columnname on tablename(columnname);
 ```
