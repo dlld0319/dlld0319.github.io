@@ -28,7 +28,7 @@ jobs:
       - name: npm install, build
         run: |
           yarn install
-          yarn deploy
+          yarn build
           cp config.html public/
 
       - name: Deploy
