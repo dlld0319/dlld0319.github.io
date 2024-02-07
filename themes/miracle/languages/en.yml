@@ -5,7 +5,7 @@ search:
     success: v
     error: x
 
-postTotal: "共 %d 篇文章."
+postTotal: "%d posts in total."
 
 paginator:
   pre: Previous
@@ -20,7 +20,7 @@ home:
   title: Home
 
 archive:
-  title: 所有文章
+  title: Archives
   subtitle: Archive
 
 tag:
@@ -28,7 +28,7 @@ tag:
   subtitle: Tag
 
 category:
-  title: 分类
+  title: Categories
   subtitle: Category
 
 about:
