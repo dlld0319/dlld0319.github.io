@@ -34,6 +34,6 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          token: ${{ secrets.DEVSERCET2 }}
+          token: ${{ secrets.DEVSERCET }}
           branch: pages
           folder: public
