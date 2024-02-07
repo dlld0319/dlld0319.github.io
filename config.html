@@ -92,7 +92,7 @@
                 repo: 'dlld0319.github.io',
                 branch: 'build',
                 path: 'source/_posts',
-                tokenBase64: 'Z2hwX0p6ME5aZXdtQ3U0UzQ1d3J3MkVSUUhiWnpYUEoxQjNTTkRPeQ==',
+                tokenBase64: ['Z2hwXzJhd1FEMlVYckEwUG','ZWODc1cXBNNXdoVWVjZ2NQazBRZ0pQcA=='],
                 user_name: 'ld122481669@126.com',
                 email: 'ld122481669@126.com',
                 getContentUrl: '',
@@ -201,7 +201,7 @@
                 return `/repos/${this.owner}/${this.repo}/contents/${this.editPath}?ref=${this.branch}`
             },
             async upload() {
-                const token=atob(this.tokenBase64);
+                const token=atob(this.tokenBase64.join(''));
                 var loading = weui.loading('保存中', 2000);
                 var Upurl = this.adddoc();
                 const octokit = new Octokit({
