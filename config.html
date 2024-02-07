@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Import style -->
+    <!-- Import component library -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- ⚠️生产环境请指定版本号，如 https://unpkg.com/vditor@x.x.x/dist... -->
+    <link rel="stylesheet" href="https://unpkg.com/vditor/dist/index.css" />
+    <link rel="stylesheet" href="https://weui.io/1.x/weui.css" />
+
+    <style>
+        .btn-light {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="spinner-border" role="status" v-if="!loading">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div v-else style="padding: 20px;">
+            <div v-if="!fileUrl&&!newFile">
+                <button type="button" class="btn btn-light" @click="init()">重新加载</button>
+                <button type="button" class="btn btn-light" @click="back()">后退</button>
+                <button type="button" class="btn btn-light" @click="addFile()">新建（默认为该目录下）</button>
+                <div>当前路径{{lujing}}</div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#序号</th>
+                            <th scope="col">文件名称</th>
+                            <th scope="col" style="max-width: 150px;">路径</th>
+                            <th scope="col">文件类型</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in mdList" :key="index">
+                            <th scope="row">{{index+1}}</th>
+                            <td>{{item.name}}</td>
+                            <td style="max-width: 250px; overflow-x: auto;">{{item.download_url}}</td>
+                            <td>{{item.type}}</td>
+                            <td>
+                                <button v-if="item.type=='dir'" class="btn btn-light"
+                                    @click="nextDir(item.path)">下一层</button>
+                                <button type="button" class="btn btn-light" v-if="item.type!='dir'"
+                                    @click="editFile(item.download_url);sha=item.sha;editPath=item.path">编辑</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div v-if="newFile" class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">请输入文件路径</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="请输入文件路径"
+                    :value="newFile">
+            </div>
+            <div v-if="fileUrl||newFile" id="vditor"></div>
+            <div v-if="fileUrl||newFile" style="margin-left: 80%;">
+                <button type="button" class="btn btn-success" @click="save()" style="margin-right: 10px;">保存</button>
+                <button type="button" class="btn btn-danger" @click="close()">关闭</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"
+crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vditor/dist/index.min.js"></script>
+<script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+
+<script type="module">
+    import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+    import { Octokit, App } from "https://esm.sh/octokit";
+
+    createApp({
+        data() {
+            return {
+                loading: false,
+                owner: 'dlld0319',
+                repo: 'dlld0319.github.io',
+                branch: 'build',
+                path: 'source/_posts',
+                token: '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',
+                user_name: 'ld122481669@126.com',
+                email: 'ld122481669@126.com',
+                getContentUrl: '',
+                adddocUrl: '',
+                /*MD文件的列表*/
+                mdList: [],
+                /*加载MD文件，并进行编辑*/
+                fileUrl: '',
+                contentEditor: '',
+                lujing: '',
+                sha: '',
+                editPath: '',
+                newFile: '',
+            }
+        },
+        async created() {
+            await this.init();
+            this.loading = true;
+        },
+        methods: {
+            async get(url) {
+                return new Promise((resolve, reject) => {
+                    fetch('https://api.github.com' + url).then(res => {
+                        res.json().then(res => {
+                            resolve(res)
+
+                        })
+                    })
+                })
+            },
+            async post(url, data) {
+                return new Promise((resolve, reject) => {
+                    fetch('https://api.github.com' + url, { method: 'POST', body: data }).then(res => {
+                        res.json().then(res => {
+                            resolve(res)
+                        })
+                    })
+                })
+            },
+            getContentUrlFunction() {
+                this.getContentUrl = `/repos/${this.owner}/${this.repo}/contents/${this.path}?ref=${this.branch}`
+            },
+            async init() {
+                this.getContentUrlFunction();
+                const result = await this.get(this.getContentUrl);
+                this.mdList = result;
+                console.log(this.mdList);
+                if (this.mdList.find(b => b.type == 'file')) {
+                    this.lujing = this.mdList.find(b => b.type == 'file').path.substr(0, this.mdList.find(b => b.type == 'file').path.lastIndexOf('/'))
+                } else {
+                    this.lujing = this.mdList.find(b => b.type == 'dir').path.substr(0, this.mdList.find(b => b.type == 'dir').path.lastIndexOf('/'))
+                }
+            },
+            nextDir(path) {
+                this.path = path;
+                this.init();
+            },
+            async streamToString(stream) {
+                const reader = stream.getReader();
+                let result = '';
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) {
+                        break;
+                    }
+                    result += value;
+                }
+                return result;
+            },
+            async editFile(url) {
+                this.fileUrl = url;
+                const dec = new TextDecoder("UTF-8");
+                const str = await new Promise(async (resolve, reject) => {
+                    fetch(this.fileUrl).then(async response => {
+                        var str = await this.streamToString(response.body)
+                        console.log(dec.decode(new Uint8Array(str.split(','))))
+                        resolve(dec.decode(new Uint8Array(str.split(','))))
+                    })
+                })
+                this.contentEditor = new Vditor('vditor', {
+                    height: 800,
+                    toolbarConfig: {
+                        pin: true,
+                    },
+                    cache: {
+                        enable: false,
+                    },
+                    after: () => {
+                        this.contentEditor.setValue(str)
+                    },
+                })
+            },
+            save() {
+                this.upload();
+            },
+            close() {
+                this.fileUrl = '';
+                this.newFile = '';
+            },
+            back() {
+                this.path = this.path.substr(0, this.path.lastIndexOf('/'));
+                this.init();
+            },
+            adddoc(file) {
+                this.adddocUrl = `/repos/${this.owner}/${this.repo}/contents/${this.path}?ref=${this.branch}`
+                return `/repos/${this.owner}/${this.repo}/contents/${this.editPath}?ref=${this.branch}`
+            },
+            async upload() {
+                var loading =weui.loading('保存中',2000);
+                var Upurl = this.adddoc();
+                var sha = '';
+                var hpp_githubgetdocinit = {
+                    method: "GET",
+                    headers: {
+                        "content-type": "application/json;charset=UTF-8",
+                        "user-agent": "HexoPlusPlus@1.2.0",
+                        "Authorization": "token " + this.token
+                    },
+                }
+                sha = await new Promise((resolve) => {
+                    fetch('https://api.github.com' + Upurl, hpp_githubgetdocinit).then(res => {
+                        res.json().then(res => {
+                            resolve(res.sha);
+                        })
+                    })
+                })
+                const octokit = new Octokit({
+                    auth: this.token
+                });
+                if (this.newFile) {
+                    let base64 = btoa(String.fromCharCode(...new TextEncoder().encode(this.contentEditor.getValue())))
+
+                    await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+                        owner: this.owner,
+                        repo: this.repo,
+                        path: this.lujing + '/' + this.newFile,
+                        message: "message " + new Date().getTime(),
+                        committer: {
+                            name: this.user_name,
+                            email: this.email
+                        },
+                        content: base64,
+                        headers: {
+                            'X-GitHub-Api-Version': '2022-11-28'
+                        }
+                    })
+                } else {
+                    let base64 = btoa(String.fromCharCode(...new TextEncoder().encode(this.contentEditor.getValue())))
+                    await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+                        owner: this.owner,
+                        repo: this.repo,
+                        path: this.editPath,
+                        message: "message " + new Date().getTime(),
+                        committer: {
+                            name: this.user_name,
+                            email: this.email
+                        },
+                        content: base64,
+                        sha: sha,
+                        headers: {
+                            'X-GitHub-Api-Version': '2022-11-28'
+                        }
+                    })
+                }
+                loading.hide();
+                weui.toast('操作成功', 3000)
+                this.close();
+        },
+        async addFile() {
+            this.newFile = new Date().getTime() + '.md';
+            setTimeout(() => {
+                this.contentEditor = new Vditor('vditor', {
+                    height: 800,
+                    toolbarConfig: {
+                        pin: true,
+                    },
+                    cache: {
+                        enable: false,
+                    },
+                    after: () => {
+                        this.contentEditor.setValue('')
+                    },
+                })
+            }, 100);
+        },
+
+    }
+    }).mount('#app')
+</script>
