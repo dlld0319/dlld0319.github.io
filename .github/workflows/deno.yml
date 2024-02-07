@@ -28,7 +28,7 @@ jobs:
       - name: npm install, build
         run: |
           npm install
-          npm build
+          npm run build
           cp config.html public/
 
       - name: Deploy
