@@ -400,7 +400,7 @@ post_meta:
     icon: far fa-calendar-plus
   # The update time of post.
   updated:
-    enable: true
+    enable: false
     # Icon name in FontAwesome, see: https://fontawesome.com/icons
     icon: far fa-calendar-check
   # The approximate reading time of post.
