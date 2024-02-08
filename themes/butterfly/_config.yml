@@ -274,7 +274,7 @@ aside:
 # 訪問人數
 busuanzi:
   site_uv: true
-  site_pv: true
+  site_pv: false
   page_pv: true
 
 # Time difference between publish date and now (網頁運行時間)
@@ -635,7 +635,7 @@ theme_color:
 # The top_img settings of home page
 # default: top img - full screen, site info - middle (默認top_img全屏，site_info在中間)
 # The position of site info, eg: 300px/300em/300rem/10% (主頁標題距離頂部距離)
-index_site_info_top: 20%
+index_site_info_top: 24%
 # The height of top_img, eg: 300px/300em/300rem (主頁top_img高度)
 index_top_img_height: 180px
 
@@ -686,12 +686,12 @@ canvas_ribbon:
   alpha: 0.6
   zIndex: -1
   click_to_change: false
-  mobile: false
+  mobile: true
 
 # Fluttering Ribbon (動態彩帶)
 canvas_fluttering_ribbon:
-  enable: false
-  mobile: false
+  enable: true
+  mobile: true
 
 # canvas_nest
 # https://github.com/hustcc/canvas-nest.js
