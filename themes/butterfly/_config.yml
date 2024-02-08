@@ -207,7 +207,7 @@ noticeOutdate:
 footer:
   owner:
     enable: true
-    since: 2020
+    since: 2023
   custom_text:
   copyright: true # Copyright of theme and framework
 
@@ -234,7 +234,7 @@ aside:
       link: https://github.com/dlld0319
   card_announcement:
     enable: true
-    content: This is my Blog
+    content: 联系邮箱ld122481669@126.com
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
@@ -635,9 +635,9 @@ site_verification:
 # The top_img settings of home page
 # default: top img - full screen, site info - middle (默認top_img全屏，site_info在中間)
 # The position of site info, eg: 300px/300em/300rem/10% (主頁標題距離頂部距離)
-index_site_info_top:
+index_site_info_top: 20%
 # The height of top_img, eg: 300px/300em/300rem (主頁top_img高度)
-index_top_img_height:
+index_top_img_height: 180px
 
 # The user interface setting of category and tag page (category和tag頁的UI設置)
 # index - same as Homepage UI (index 值代表 UI將與首頁的UI一樣)
