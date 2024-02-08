@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <!-- Import style -->
     <!-- Import component library -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- ⚠️生产环境请指定版本号，如 https://unpkg.com/vditor@x.x.x/dist... -->
-    <link rel="stylesheet" href="https://unpkg.com/vditor/dist/index.css" />
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/vditor/3.9.5/index.css" />
     <link rel="stylesheet" href="https://weui.io/1.x/weui.css" />
 
     <style>
@@ -22,6 +21,11 @@
 </head>
 
 <body>
+    <script>
+        with (document) with (body) with (insertBefore(createElement("script"), firstChild)) setAttribute("exparams", "category=&userid=&aplus&yunid=&&trid=ac11000117073582375195459ee6c8&asid=AQAAAAAdOMRlY2ueaAAAAABavH2Kw8l8lw==", id = "tb-beacon-aplus", src = (location > "https" ? "//g" : "//g") + ".alicdn.com/alilog/mlog/aplus_v2.js")
+    </script>
+
+
     <div id="app">
         <div class="spinner-border" role="status" v-if="!loading">
             <span class="visually-hidden">Loading...</span>
@@ -61,7 +65,7 @@
             <div v-if="newFile" class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">请输入文件路径</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="请输入文件路径"
-                v-model="newFile">
+                    v-model="newFile">
             </div>
             <div v-if="fileUrl||newFile" id="vditor"></div>
             <div v-if="fileUrl||newFile" style="margin-left: 80%;">
@@ -74,14 +78,12 @@
 </body>
 
 </html>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"
-    crossorigin="anonymous"></script>
-<script src="https://unpkg.com/vditor/dist/index.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/vditor/3.9.5/index.min.js"></script>
 <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
 
 <script type="module">
-    import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+    import { createApp, ref } from 'https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.esm-browser.js';
     import { Octokit, App } from "https://esm.sh/octokit";
 
     createApp({
@@ -92,7 +94,7 @@
                 repo: 'dlld0319.github.io',
                 branch: 'build',
                 path: 'source/_posts',
-                tokenBase64: ['','=='],
+                tokenBase64: ['', '=='],
                 user_name: 'ld122481669@126.com',
                 email: 'ld122481669@126.com',
                 getContentUrl: '',
@@ -201,7 +203,7 @@
                 return `/repos/${this.owner}/${this.repo}/contents/${this.editPath}?ref=${this.branch}`
             },
             async upload() {
-                const token=atob(this.tokenBase64.join(''));
+                const token = atob(this.tokenBase64.join(''));
                 var loading = weui.loading('保存中', 2000);
                 var Upurl = this.adddoc();
                 const octokit = new Octokit({
@@ -274,7 +276,17 @@
                             enable: false,
                         },
                         after: () => {
-                            this.contentEditor.setValue('')
+                            this.contentEditor.setValue(
+`
+---
+title: ???
+date: 2024-01-01
+categories:
+- ?
+tags:
+- ?
+excerpt: ??
+---`)
                         },
                     })
                 }, 100);
