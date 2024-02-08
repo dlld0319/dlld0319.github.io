@@ -97,9 +97,24 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/ 
 ## Themes: https://hexo.io/themes/
-theme: stun
+theme: butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
+
+kramed:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
+
+search:
+  path: search.json
+  field: post
+  content: true
+  template: ./search.json
