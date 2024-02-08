@@ -231,7 +231,7 @@ aside:
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      link: https://github.com/dlld0319
   card_announcement:
     enable: true
     content: This is my Blog
@@ -404,7 +404,7 @@ addtoany:
 comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
-  use: gitalk # Valine,Disqus
+  use: giscus # Valine,Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
@@ -490,13 +490,22 @@ twikoo:
 # Giscus
 # https://giscus.app/
 giscus:
-  repo:
-  repo_id:
-  category_id:
+  repo: dlld0319/dlld0319.github.io
+  repo_id: R_kgDOJDgPVQ
+  category_id: DIC_kwDOJDgPVc4CdAk6
+  category: Announcements
   theme:
     light: light
     dark: dark
   option:
+    mapping: og:title
+    strict: 0
+    reactionsEnabled: 1
+    emitMetadata: 0
+    inputPosition: bottom
+    theme: preferred_color_scheme
+    lang: zh-CN
+    loading: lazy
 
 # Remark42
 # https://remark42.com/docs/configuration/frontend/
