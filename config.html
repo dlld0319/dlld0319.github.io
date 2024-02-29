@@ -32,7 +32,7 @@
         </div>
         <div v-else style="padding: 20px;">
             <div v-if="!fileUrl&&!newFile">
-                <button type="button" class="btn btn-light" @click="init()">重新加载</button>
+                <button type="button" class="btn btn-light" @click="reload() ">重新加载</button>
                 <button type="button" class="btn btn-light" @click="back()">后退</button>
                 <button type="button" class="btn btn-light" @click="addFile()">新建（默认为该目录下）</button>
                 <div>当前路径{{lujing}}</div>
@@ -123,6 +123,9 @@
             }
         },
         methods: {
+            reload(){
+                location.reload() 
+            },
             async get(url) {
                 return new Promise((resolve, reject) => {
                     fetch('https://api.github.com' + url).then(res => {
