@@ -125,6 +125,14 @@
                     })
                 })
             },
+            async getNormal(url) {
+                return new Promise((resolve, reject) => {
+                    fetch(url).then(res => {
+                        debugger
+                        resolve(res)
+                    })
+                })
+            },
             async post(url, data) {
                 return new Promise((resolve, reject) => {
                     fetch('https://api.github.com' + url, { method: 'POST', body: data }).then(res => {
@@ -138,6 +146,7 @@
                 this.getContentUrl = `/repos/${this.owner}/${this.repo}/contents/${this.path}?ref=${this.branch}`
             },
             async init() {
+                this.getToken();
                 this.getContentUrlFunction();
                 const result = await this.get(this.getContentUrl);
                 this.mdList = result;
@@ -203,7 +212,7 @@
                 return `/repos/${this.owner}/${this.repo}/contents/${this.editPath}?ref=${this.branch}`
             },
             async upload() {
-                const token = atob(this.tokenBase64.join(''));
+                const token = sessionStorage.getItem('token');
                 var loading = weui.loading('保存中', 2000);
                 var Upurl = this.adddoc();
                 const octokit = new Octokit({
@@ -263,6 +272,12 @@
                 loading.hide();
                 weui.toast('操作成功', 3000)
                 this.close();
+            },
+            async getToken() {
+                var token=await this.getNormal('https://token.ld122481669.workers.dev/');
+                debugger
+                sessionStorage.setItem('token', token);
+
             },
             async addFile() {
                 this.newFile = new Date().getTime() + '.md';
