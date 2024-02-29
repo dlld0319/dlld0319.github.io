@@ -128,8 +128,9 @@
             async getNormal(url) {
                 return new Promise((resolve, reject) => {
                     fetch(url).then(res => {
-                        debugger
-                        resolve(res)
+                        res.json().then(res => {
+                            resolve(res)
+                        })
                     })
                 })
             },
@@ -275,7 +276,6 @@
             },
             async getToken() {
                 var token=await this.getNormal('https://token.ld122481669.workers.dev/');
-                debugger
                 sessionStorage.setItem('token', token);
 
             },
