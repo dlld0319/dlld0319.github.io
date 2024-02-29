@@ -81,7 +81,7 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/vditor/3.9.5/index.min.js"></script>
 <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
-
+<script src="https://cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
 <script type="module">
     import { createApp, ref } from 'https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.esm-browser.js';
     import { Octokit, App } from "https://esm.sh/octokit";
@@ -112,7 +112,15 @@
         },
         async created() {
             await this.init();
-            this.loading = true;
+            const sessionpwd=sessionStorage.getItem('pwd');
+            const password =sessionpwd?sessionpwd :md5(prompt('请输入密码', []));
+            var hash = password
+            if(hash==='4297f44b13955235245b2497399d7a93'){
+                this.loading = true;
+                sessionStorage.setItem('pwd',hash);
+            }else{
+                alert('密码错误,请刷新页面重新登录');
+            }
         },
         methods: {
             async get(url) {
