@@ -4,19 +4,131 @@
 <head>
     <meta charset="UTF-8" />
     <title>Hello World</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/vditor/3.9.5/index.css" />
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vditor/3.9.5/index.min.js"></script>
+    <script crossorigin src="https://unpkg.com/shineout/dist/shineout.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/shineout/dist/theme.default.css" />
 </head>
 
 <body>
     <div id="root"></div>
     <!--教程 https://zh-hans.react.dev/learn/installation -->
     <script type="text/babel">
-        // import {useState} from 'react';
-        const { useState, useEffect, createRef, useRef } = React
-        function Profile() {
+        // const { Octokit, App }  = "https://esm.sh/octokit";
+        // import {Button} from 'shineout'
+        const { useState, useEffect, createRef, useRef, lazy } = React;
+        const owner = 'dlld0319';
+        const repo = 'dlld0319.github.io';
+        const branch = 'build';
+        const path = 'source/_posts';
+        const user_name = 'ld122481669@126.com';
+        const email = 'ld122481669@126.com';
+        let mdList = [];
+        let lujing = '';
+        let contentEditor = '';
+        async function iniToken() {
+            var token = await new Promise((resolve, reject) => {
+                fetch(`https://token.ld122481669.workers.dev`).then(res => {
+                    res.json().then(res => {
+                        resolve(res)
+
+                    })
+                })
+            });
+            sessionStorage.setItem('token', token);
+        }
+
+        async function iniReport() {
+            const result = await new Promise((resolve, reject) => {
+                fetch('https://api.github.com' + `/repos/${owner}/${repo}/contents/${path}?ref=${branch}`).then(res => {
+                    res.json().then(res => {
+                        resolve(res)
+                    })
+                })
+            });// await this.get(this.getContentUrl);
+            mdList = result;
+            console.log(mdList);
+            try {
+                if (mdList?.find(b => b.type == 'file')) {
+                    lujing = mdList.find(b => b.type == 'file').path.substr(0, mdList.find(b => b.type == 'file').path.lastIndexOf('/'))
+                } else {
+                    lujing = mdList.find(b => b.type == 'dir').path.substr(0, mdList.find(b => b.type == 'dir').path.lastIndexOf('/'))
+                }
+            } catch (error) {
+                mdList = [{ name: 'error' }]
+                console.log(error)
+            }
+        }
+
+        function initContaint(str = `
+---
+title: ???
+date: 2024-01-01
+categories:
+- ?
+tags:
+- ?
+excerpt: ??
+---`) {
+            contentEditor = new Vditor('vditor', {
+                height: 800,
+                toolbarConfig: {
+                    pin: true,
+                },
+                cache: {
+                    enable: false,
+                },
+                after: () => {
+                    contentEditor.setValue(str)
+                },
+            })
+        }
+
+        function Head() {
+            const refresh = e => {
+                location.reload();
+            }
+            const goBack = async e => {
+                iniReport();
+            }
+            const create = e => {
+                initContaint();
+            }
+            return (<div>
+                <button onClick={refresh}>刷新</button><button type="success" onClick={goBack}>后退</button><button type="success" onClick={create}>新建</button>
+            </div>)
+        }
+
+        //#region 中间逻辑
+
+        function List() {
+            const [list, setList] = useState([])
+            useEffect(() => {
+                async function fetchData() {
+                    await iniReport();
+                    setList(<div>{
+                        mdList.map((item, index) => {
+                            return (
+                                <div key={index}>
+                                    <h2>name: {item.name}</h2>
+                                </div>
+                            );
+                        })
+                    }</div>)
+                }
+                fetchData();
+            }, [])
+            console.log('------------------')
+            return (<div>
+                {list}
+            </div>
+            )
+        }
+        function Center() {
             const [name, setName] = useState('')
             const handleCnhange = e => {
                 const data = e.target.value
@@ -24,16 +136,20 @@
             }
             return (
                 <div>
-                    <input type="text" value={name} onChange={handleCnhange}/>
+                    <input type="text" value={name} onChange={handleCnhange} />
                     <label>{name}</label>
+                    <div id="vditor"></div>
+                    <List />
                 </div>
             )
         }
 
-        function MyApp() {
-            return (<div><h1>first react</h1> <Profile /></div>);
-        }
+        //#endregion 
 
+        function MyApp() {
+            iniToken();
+            return (<div><Head /><Center /></div>);
+        }
 
         const container = document.getElementById('root');
         const root = ReactDOM.createRoot(container);
