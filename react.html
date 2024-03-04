@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!--教程 https://zh-hans.react.dev/learn/installation -->
+    <script type="text/babel">
+        // import {useState} from 'react';
+        const { useState, useEffect, createRef, useRef } = React
+        function Profile() {
+            const [name, setName] = useState('')
+            const handleCnhange = e => {
+                const data = e.target.value
+                setName(data)
+            }
+            return (
+                <div>
+                    <input type="text" value={name} onChange={handleCnhange}/>
+                    <label>{name}</label>
+                </div>
+            )
+        }
+
+        function MyApp() {
+            return (<div><h1>first react</h1> <Profile /></div>);
+        }
+
+
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<MyApp />);
+
+    </script>
+</body>
+
+</html>
