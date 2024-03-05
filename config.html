@@ -34,7 +34,7 @@
             <div v-if="!fileUrl&&!newFile">
                 <button type="button" class="btn btn-light" @click="reload() ">重新加载</button>
                 <button type="button" class="btn btn-light" @click="back()">后退</button>
-                <button type="button" class="btn btn-light" @click="addFile()">新建（默认为该目录下）</button>
+                <button type="button" class="btn btn-light" @click="addFile()">新建（请在后台先创建目录）</button>
                 <div>当前路径{{lujing}}</div>
                 <table class="table table-striped">
                     <thead>
