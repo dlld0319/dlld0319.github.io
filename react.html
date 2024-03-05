@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/vditor/3.9.5/index.css" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vditor/3.9.5/index.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+        integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="root"></div>
+    <style>
+        body {
+            padding: 30px;
+        }
+
+        .pure-button {
+            margin-right: 20px;
+        }
+    </style>
+    <!--教程 https://zh-hans.react.dev/learn/installation -->
+    <script type="text/babel">
+        // const { Octokit, App }  = "https://esm.sh/octokit";
+        // import {Button} from 'shineout'
+        const { useState, useEffect, createRef, useRef, lazy } = React;
+        const owner = 'dlld0319';
+        const repo = 'dlld0319.github.io';
+        const branch = 'build';
+        let path = 'source/_posts';
+        const user_name = 'ld122481669@126.com';
+        const email = 'ld122481669@126.com';
+        let mdList = [];
+        let lujing = '';
+        let contentEditor = '';
+        let change = false;
+        let editShow = false;
+        let editPath = '';
+        let newFile = false;
+        let nameSubmit='';
+        async function iniToken() {
+            var token = await new Promise((resolve, reject) => {
+                fetch(`https://token.ld122481669.workers.dev`).then(res => {
+                    res.json().then(res => {
+                        resolve(res)
+
+                    })
+                })
+            });
+            sessionStorage.setItem('token', token);
+        }
+
+        async function iniReport() {
+            const result = await new Promise((resolve, reject) => {
+                fetch('https://api.github.com' + `/repos/${owner}/${repo}/contents/${path}?ref=${branch}`).then(res => {
+                    res.json().then(res => {
+                        resolve(res)
+                    })
+                })
+            });// await this.get(this.getContentUrl);
+            mdList = result;
+            try {
+                if (mdList?.find(b => b.type == 'file')) {
+                    lujing = mdList.find(b => b.type == 'file').path.substr(0, mdList.find(b => b.type == 'file').path.lastIndexOf('/'))
+                } else {
+                    lujing = mdList.find(b => b.type == 'dir').path.substr(0, mdList.find(b => b.type == 'dir').path.lastIndexOf('/'))
+                }
+            } catch (error) {
+                mdList = [{ name: 'error' }]
+                console.log(error)
+            }
+        }
+
+        function initContaint(str = `
+---
+title: ???
+date: 2024-01-01
+categories:
+- ?
+tags:
+- ?
+excerpt: ??
+---`) {
+            contentEditor = new Vditor('vditor', {
+                height: 800,
+                toolbarConfig: {
+                    pin: true,
+                },
+                cache: {
+                    enable: false,
+                },
+                after: () => {
+                    contentEditor.setValue(str)
+                },
+            })
+            editShow = true;
+            document.getElementsByClassName('pure-table')[0].style.display = 'none'
+            document.getElementById('aligned-name').style.display = 'block'
+            newFile = true;
+        }
+
+        function Head() {
+            const refresh = e => {
+                location.reload();
+            }
+            const goBack = async e => {
+                change = true;
+                path = path.substr(0, path.lastIndexOf('/'));
+                console.log(path)
+            }
+            const create = e => {
+                initContaint();
+            }
+            return (<div>
+                <button class="pure-button pure-button-primary" onClick={refresh}>刷新</button><button class="pure-button pure-button-primary" onClick={goBack}>后退</button><button class="pure-button pure-button-primary" onClick={create}>新建</button>
+            </div>)
+        }
+
+        //#region 中间逻辑
+        async function upload() {
+            const token = sessionStorage.getItem('token');
+            var Upurl = `/repos/${owner}/${repo}/contents/${editPath}?ref=${branch}`;
+            // const octokit = new Octokit({
+            //     auth: token
+            // });
+            const headers = {
+                "content-type": "application/json;charset=UTF-8",
+                "user-agent": "HexoPlusPlus@1.2.0",
+                "Authorization": "token " + token
+            }
+            if (newFile) {
+                let base64 = btoa(String.fromCharCode(...new TextEncoder().encode(contentEditor.getValue())))
+                fetch('https://api.github.com' + `/repos/${owner}/${repo}/contents/${lujing + '/' + nameSubmit||new Date().getTime()+'.md'}?ref=${branch}`,
+                    { method: 'put', headers: headers, body:JSON.stringify( { message: "message " + new Date().getTime(), committer: { name: user_name, email: email }, content: base64 }) })
+                // await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+                //     owner: owner,
+                //     repo: repo,
+                //     path: lujing + '/' + newFile,
+                //     message: "message " + new Date().getTime(),
+                //     committer: {
+                //         name: user_name,
+                //         email: email
+                //     },
+                //     content: base64,
+                //     headers: {
+                //         'X-GitHub-Api-Version': '2022-11-28'
+                //     }
+                // })
+            } else {
+                var sha = '';
+                var hpp_githubgetdocinit = {
+                    method: "GET",
+                    headers: {
+                        "content-type": "application/json;charset=UTF-8",
+                        "user-agent": "HexoPlusPlus@1.2.0",
+                        "Authorization": "token " + token
+                    },
+                }
+                sha = await new Promise((resolve) => {
+                    fetch('https://api.github.com' + Upurl, hpp_githubgetdocinit).then(res => {
+                        res.json().then(res => {
+                            resolve(res.sha);
+                        })
+                    })
+                })
+                let base64 = btoa(String.fromCharCode(...new TextEncoder().encode(contentEditor.getValue())))
+                fetch('https://api.github.com' + `/repos/${owner}/${repo}/contents/${editPath}?ref=${branch}`,
+                    { method: 'put', headers: headers, body: JSON.stringify({ message: "message " + new Date().getTime(), committer: { name: user_name, email: email }, content: base64 }) })
+                // await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+                //     owner: owner,
+                //     repo: repo,
+                //     path: editPath,
+                //     message: "message " + new Date().getTime(),
+                //     committer: {
+                //         name: user_name,
+                //         email: email
+                //     },
+                //     content: base64,
+                //     sha: sha,
+                //     headers: {
+                //         'X-GitHub-Api-Version': '2022-11-28'
+                //     }
+                // })
+            }
+            newFile = false;
+        }
+
+        function List() {
+            const [list, setList] = useState([])
+            useEffect(() => {
+                async function load(insidePath) {
+                    console.log(insidePath)
+                    fetchData(insidePath)
+                }
+                async function goBackLoad() {
+                    const that = this;
+                    setInterval(() => {
+                        if (change) {
+                            console.log(path)
+                            change = false;
+                            fetchData(path)
+                        }
+                    }, 200);
+                }
+                async function streamToString(stream) {
+                    const reader = stream.getReader();
+                    let result = '';
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) {
+                            break;
+                        }
+                        result += value;
+                    }
+                    return result;
+                }
+                async function editFile(url, path) {
+                    editPath = path;
+                    const dec = new TextDecoder("UTF-8");
+                    const str = await new Promise(async (resolve, reject) => {
+                        fetch(url).then(async response => {
+                            var str = await streamToString(response.body)
+                            console.log(dec.decode(new Uint8Array(str.split(','))))
+                            resolve(dec.decode(new Uint8Array(str.split(','))))
+                        })
+                    })
+                    contentEditor = new Vditor('vditor', {
+                        height: 800,
+                        toolbarConfig: {
+                            pin: true,
+                        },
+                        cache: {
+                            enable: false,
+                        },
+                        after: () => {
+                            contentEditor.setValue(str)
+                        },
+                    })
+                    editShow = true;
+                    fetchData();
+                    try {
+                        document.getElementsByClassName('pure-table')[0].style.display = 'block'
+                        document.getElementById('aligned-name').style.display = 'block'
+                    } catch (error) {
+                    }
+                }
+
+
+                function close() {
+                    editShow = false
+                    try {
+                        document.getElementsByClassName('pure-table')[0].style.display = 'block'
+                    } catch (error) {
+                    }
+                    document.getElementsByClassName('vditor')[0].style.height = 0
+                    document.getElementsByClassName('vditor')[0].innerHTML = ''
+                    document.getElementById('aligned-name').style.display = 'none'
+                    fetchData();
+                    newFile = false;
+
+                }
+
+                async function submit() {
+                    await upload();
+                    console.log(path)
+                    editShow = false
+                    try {
+                        document.getElementsByClassName('pure-table')[0].style.display = 'block'
+                    } catch (error) {
+                    }
+                    document.getElementsByClassName('vditor')[0].style.height = 0
+                    document.getElementsByClassName('vditor')[0].innerHTML = ''
+                    document.getElementById('aligned-name').style.display = 'none'
+                    fetchData();
+                    newFile = false;
+
+                }
+
+                async function fetchData(insidePath) {
+                    path = insidePath || path;
+                    if (editShow) {
+                        setList(<div><button class="pure-button pure-button-primary" onClick={close}>关闭</button><button class="pure-button pure-button-primary" onClick={submit}>提交</button></div>)
+                    } else {
+                        await iniReport();
+                        document.getElementById('aligned-name').style.display = 'none'
+                        setList(<table class="pure-table">
+                            <thead>
+                                <tr>
+                                    <th>#序号</th>
+                                    <th>名称</th>
+                                    <th>链接</th>
+                                    <th>类型</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    mdList.map((item, index) => {
+                                        return (
+                                            <tr key={index}>
+                                                <td>{index + 1}</td>
+                                                <td>{item.name}</td>
+                                                <td>{item.download_url}</td>
+                                                <td>{item.type}</td>
+                                                <td>
+                                                    {
+                                                        item.type == 'dir' ? <button class="pure-button pure-button-primary" onClick={() => load(item.path)}>下一层</button> :
+                                                            <button class="pure-button pure-button-primary" onClick={() => editFile(item.download_url, item.path)}>编辑</button>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        );
+                                    })
+                                }
+                            </tbody>
+                        </table>)
+                    }
+
+                }
+                setInterval(() => {
+                    if (editShow) {
+                        setList(<div><button class="pure-button pure-button-primary" onClick={close}>关闭</button><button class="pure-button pure-button-primary" onClick={submit}>提交</button></div>)
+                    }
+                }, 200);
+                fetchData();
+                goBackLoad();
+            }, [])
+            console.log('------------------')
+            return (<div>
+                {list}
+            </div>
+            )
+        }
+        function Center() {
+            const [name, setName] = useState('')
+            const handleCnhange = e => {
+                const data = e.target.value
+                setName(data)
+            }
+            return (
+                <div>
+                    <div id="vditor"></div>
+                    <List />
+                </div>
+            )
+        }
+
+        //#endregion 
+
+        function MyApp() {
+            iniToken();
+            const [name, setName] = useState('')
+            const handleCnhange = e => {
+                const data = e.target.value
+                setName(data)
+                nameSubmit=data;
+            }
+            return (<div><Head /> <input type="text"  id="aligned-name"   placeholder="文件名称" value={name} onChange={handleCnhange} /><Center /></div>);
+        }
+
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<MyApp />);
+
+    </script>
+</body>
+
+</html>
