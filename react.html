@@ -46,14 +46,12 @@
         let nameSubmit='';
         async function iniToken() {
             var html = await new Promise((resolve, reject) => {
-                fetch(`https://pages-792.pages.dev/`).then(res => {
-                    res.json().then(res => {
-                        resolve(res)
-
-                    })
+                fetch(`https://pages-792.pages.dev/`).then(async res => {
+                    var bb= await res.clone().text();
+                    resolve(bb)
                 })
             });
-            var token= html.split('githubkey=')[1].split('=endkey')[0];
+            var token= html.split('githubkey=')[1].split('=endkey')[0];debugger
             sessionStorage.setItem('token', token);
         }
 
