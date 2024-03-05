@@ -224,7 +224,7 @@
             },
             async upload() {
                 const token = sessionStorage.getItem('token');
-                var loading = weui.loading('保存中', 2000);
+                var loading = weui.loading('保存中');
                 var Upurl = this.adddoc();
                 const octokit = new Octokit({
                     auth: token
