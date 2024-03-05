@@ -30,6 +30,7 @@ jobs:
           yarn install
           yarn deploy
           cp config.html public/
+          cp react.html public/
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
