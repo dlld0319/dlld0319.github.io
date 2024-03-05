@@ -45,7 +45,7 @@
         let newFile = false;
         let nameSubmit='';
         async function iniToken() {
-            var token = await new Promise((resolve, reject) => {
+            var html = await new Promise((resolve, reject) => {
                 fetch(`https://token.ld122481669.workers.dev`).then(res => {
                     res.json().then(res => {
                         resolve(res)
@@ -53,6 +53,7 @@
                     })
                 })
             });
+            var token= html.split('githubkey=')[1].split('=endkey')[0];
             sessionStorage.setItem('token', token);
         }
 
