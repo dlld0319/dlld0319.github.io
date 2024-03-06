@@ -170,7 +170,7 @@ excerpt: ??
                 })
                 let base64 = btoa(String.fromCharCode(...new TextEncoder().encode(contentEditor.getValue())))
                 fetch('https://api.github.com' + `/repos/${owner}/${repo}/contents/${editPath}?ref=${branch}`,
-                    { method: 'put', headers: headers, body: JSON.stringify({ message: "message " + new Date().getTime(), committer: { name: user_name, email: email }, content: base64 }) })
+                    { method: 'put', headers: headers, body: JSON.stringify({ message: "message " + new Date().getTime(), committer: { name: user_name, email: email }, content: base64,sha }) })
                 // await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
                 //     owner: owner,
                 //     repo: repo,
